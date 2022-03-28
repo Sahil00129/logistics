@@ -29,7 +29,7 @@ class CreateConsignersTable extends Migration
             $table->string('district')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('state_id')->nullable();
-            $table->tinyinteger('status')->default(1)->comment('1=>active 2=>not active');
+            $table->tinyinteger('status')->default(1)->comment('0=>not active 1=>active');
             $table->timestamps();
         });
     }

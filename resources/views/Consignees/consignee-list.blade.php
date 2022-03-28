@@ -46,6 +46,7 @@
                                 <td>{{ $value->district ?? "" }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{url($prefix.'consignees/'.Crypt::encrypt($value->id).'/edit')}}" >Edit</a>
+                                    <a class="btn btn-primary" href="{{url($prefix.'consignees/'.Crypt::encrypt($value->id))}}" >View</a>
                                     <a href="Javascript:void();" class="btn btn-danger delete_consignee" data-id="{{ $value->id }}" data-action="<?php echo URL::to($prefix.'consignees/delete-consignee'); ?>">Delete</a>
                                 </td>
                             </tr>

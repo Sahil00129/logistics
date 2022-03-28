@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Mobile No.</label>
-                                    <input type="text" class="form-control" name="phone" placeholder="Enter 10 digit mobile no">
+                                    <input type="text" class="form-control mbCheckNm" name="phone" placeholder="Enter 10 digit mobile no" maxlength="10">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlSelect1">Select Branch</label>

@@ -5,6 +5,15 @@ jQuery(document).ready(function(){
         return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address.");
 
+    jQuery(document).on('keyup blur', '.mbCheckNm', function(e){
+        e.preventDefault();
+        var key  = e.charCode || e.keyCode || 0;
+        if (key >= 65 && key <= 90){
+          this.value = this.value.replace(/[^\d]/g,'');
+          return false;
+        }
+    });
+
     /*========== create user in users ========*/
     // $(document).on('submit','.general_form',function(e){
     //     e.preventDefault();
