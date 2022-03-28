@@ -13,11 +13,11 @@ class Consigner extends Model
     ];
 
     public function Branch(){
-        return $this->belongsTo('App\models\Branch','branch_id');
+        return $this->belongsTo('App\Models\Branch','branch_id');
     }
 
     public function State(){
-        return $this->belongsTo('App\models\State','state_id');
+        return $this->belongsTo('App\Models\State','state_id');
     }
 
 }
