@@ -25,15 +25,15 @@ class Consignee extends Model
     }
 
     public function GetConsigner(){
-        return $this->hasOne('App\models\Consigner','id','consigner_id');
+        return $this->hasOne('App\Models\Consigner','id','consigner_id');
     }
 
     public function GetBranch(){
-        return $this->hasOne('App\models\Branch','id','branch_id');
+        return $this->hasOne('App\Models\Branch','id','branch_id');
     }
 
     public function GetState(){
-        return $this->hasOne('App\models\State','id','state_id');
+        return $this->hasOne('App\Models\State','id','state_id');
     }
 
 }
