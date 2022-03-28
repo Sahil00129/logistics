@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Branch;
 use App\Models\State;
+use App\Models\Consigner;
 use URL;
 use Crypt;
 use Storage;
@@ -28,6 +29,11 @@ class GlobalFunctions {
     public static function getStates(){
         $states = State::where('status',1)->orderby('name','ASC')->pluck('name','id');
         return $states;
+    }
+
+    public static function getConsigners(){
+        $consigners = Consigner::where('status',1)->orderby('nick_name','ASC')->pluck('nick_name','id');
+        return $consigners;
     }
 
 }

@@ -46,7 +46,7 @@ jQuery(document).ready(function(){
     });
  	/*===== End check box checked create/update user permission page =====*/
 
-  	/*===== delete user =====*/
+  	/*===== delete User =====*/
     jQuery(document).on('click', '.delete_user', function(){
         jQuery('#deleteuser').modal('show');
         var userid =  jQuery(this).attr('data-id');
@@ -70,9 +70,9 @@ jQuery(document).ready(function(){
             });
         });
     });
- 	/*===== End delete user =====*/
+ 	/*===== End delete User =====*/
 
-  	/*===== delete branch =====*/
+  	/*===== delete Branch =====*/
     jQuery(document).on('click', '.delete_branch', function(){
         jQuery('#deletebranch').modal('show');
         var branchid =  jQuery(this).attr('data-id');
@@ -96,9 +96,9 @@ jQuery(document).ready(function(){
             });
         });
     });
- 	/*===== End delete branch =====*/
+ 	/*===== End delete Branch =====*/
 
-    /*===== delete consigner =====*/
+    /*===== delete Consigner =====*/
     jQuery(document).on('click', '.delete_consigner', function(){
         jQuery('#deleteconsigner').modal('show');
         var consignerid =  jQuery(this).attr('data-id');
@@ -122,7 +122,33 @@ jQuery(document).ready(function(){
             });
         });
     });
-    /*===== End delete consigner =====*/
+    /*===== End delete Consigner =====*/
+
+    /*===== delete Consignee =====*/
+    jQuery(document).on('click', '.delete_consignee', function(){
+        jQuery('#deleteconsignee').modal('show');
+        var consigneeid =  jQuery(this).attr('data-id');
+        var url =  jQuery(this).attr('data-action');
+        jQuery(document).off('click','.deleteconsigneeconfirm').on('click', '.deleteconsigneeconfirm', function(){
+           
+            jQuery.ajax({
+                type      : 'post',
+                url       : url,
+                data      : {consigneeid:consigneeid},
+                headers   : {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType : "JSON",
+                success:function(data){
+                    if(data){
+                        jQuery("#consigneetable").load(" #consigneetable");
+                        jQuery("#deleteconsignee").modal("hide");
+                    }
+                }
+            });
+        });
+    });
+    /*===== End delete Consignee =====*/
 
 
 });

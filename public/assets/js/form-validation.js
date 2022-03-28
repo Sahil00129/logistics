@@ -262,6 +262,72 @@ $('#updateuser').validate({
         }
     });
 
+    /*===== create consignee =====*/
+    $('#createconsignee').validate({ 
+        rules: {
+            nick_name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true,
+                regex: "",
+            },
+            address_line1 : {
+                // required: true,
+            },            
+        },
+        messages: {
+            nick_name: {
+                required: "Enter Name",
+            },
+            email: {
+                required: "Enter Email",
+                email: "Enter correct email address",
+            },
+            address_line1: {
+                required: "Enter address1",
+            },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
+    /*===== update consignee =====*/
+    $('#updateconsignee').validate({ 
+        rules: {
+            nick_name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true,
+                regex: "",
+            },
+            address_line1 : {
+                // required: true,
+            },            
+        },
+        messages: {
+            nick_name: {
+                required: "Enter Name",
+            },
+            email: {
+                required: "Enter Email",
+                email: "Enter correct email address",
+            },
+            address_line1: {
+                required: "Enter address1",
+            },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
 
 
 });
@@ -386,6 +452,8 @@ function formSubmitRedirect(form)
             }else if(response.page == 'branch-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},500);
             }else if(response.page == 'consigner-update'){
+                setTimeout(() => {window.location.href = response.redirect_url},500);
+            }else if(response.page == 'consignee-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},500);
             }
 
