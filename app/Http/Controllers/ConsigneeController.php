@@ -116,9 +116,14 @@ class ConsigneeController extends Controller
      * @param  \App\Models\Consigner  $consigner
      * @return \Illuminate\Http\Response
      */
-    public function show(Consignee $consignee)
+    public function show($consignee)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($consignee);
+
+        $getconsignee = Consignee::where('id',$id)->with('GetConsigner','GetBranch','GetState')->first();
+           // dd($getconsignee);
+        return view('consignees.view-consignee',['prefix'=>$this->prefix,'title'=>$this->title,'getconsignee'=>$getconsignee]);
     }
 
     /**

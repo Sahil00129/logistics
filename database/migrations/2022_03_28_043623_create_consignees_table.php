@@ -19,7 +19,7 @@ class CreateConsigneesTable extends Migration
             $table->string('legal_name')->nullable();
             $table->string('branch_id')->nullable();
             $table->string('consigner_id')->nullable();
-            $table->tinyinteger('dealer_type')->default(1)->comment('1=>register 2=>not register');
+            $table->tinyinteger('dealer_type')->default(1)->comment('0=>not register 1=>register');
             $table->string('gst_number')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('phone')->nullable();
@@ -34,7 +34,7 @@ class CreateConsigneesTable extends Migration
             $table->string('district')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('state_id')->nullable();
-            $table->tinyinteger('status')->default(1)->comment('1=>active 2=>not active');
+            $table->tinyinteger('status')->default(1)->comment('0=>not active 1=>active');
             $table->timestamps();
         });
     }
