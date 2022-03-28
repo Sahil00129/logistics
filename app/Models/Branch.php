@@ -13,6 +13,6 @@ class Branch extends Model
     ];
 
     public function State(){
-        return $this->belongsTo('App\models\State','state_id');
+        return $this->belongsTo('App\Models\State','state_id');
     }
 }
