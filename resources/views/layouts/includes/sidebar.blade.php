@@ -7,7 +7,7 @@
                 $segment   = Request::segment(2);
                 $prefixurl = $url.$getprefix.'/';
                 $authuser = Auth::user();
-                $permissions = App\models\UserPermission::where('user_id',$authuser->id)->pluck('permisssion_id')->ToArray();
+                $permissions = App\Models\UserPermission::where('user_id',$authuser->id)->pluck('permisssion_id')->ToArray();
                 $submenusegment = Request::segment(3);
             ?>
             <nav id="sidebar">
