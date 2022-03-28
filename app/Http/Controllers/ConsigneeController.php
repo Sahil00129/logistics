@@ -15,7 +15,7 @@ class ConsigneeController extends Controller
 {
     public function __construct()
     {
-      $this->title =  "Branches Listing";
+      $this->title =  "Consignees Listing";
       $this->segment = \Request::segment(2);
 
     }
@@ -123,7 +123,7 @@ class ConsigneeController extends Controller
 
         $getconsignee = Consignee::where('id',$id)->with('GetConsigner','GetBranch','GetState')->first();
            // dd($getconsignee);
-        return view('consignees.view-consignee',['prefix'=>$this->prefix,'title'=>$this->title,'getconsignee'=>$getconsignee]);
+        return view('Consignees.view-consignee',['prefix'=>$this->prefix,'title'=>$this->title,'getconsignee'=>$getconsignee]);
     }
 
     /**
