@@ -6,7 +6,7 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3"><h5>Update branch</h5></div>
+                    <div class="breadcrumb-title pe-3"><h5>Update Consigner</h5></div>
                     
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
@@ -99,13 +99,13 @@
                                     <div class="check-box d-flex">
                                         <div class="checkbox radio">
                                             <label class="check-label">Active
-                                               <input type="radio" value="1" name="status" class=""  checked="">
+                                               <input type="radio" value="1" name="status" class=""  {{ ($getconsigner->status=="1")? "checked" : "" }}>
                                                <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="checkbox radio">
                                             <label class="check-label">Deactive
-                                               <input type="radio" name="status" value="0">
+                                               <input type="radio" name="status" value="0" {{ ($getconsigner->status=="0")? "checked" : "" }}>
                                                <span class="checkmark"></span>
                                             </label>
                                         </div>

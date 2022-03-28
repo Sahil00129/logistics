@@ -33,7 +33,7 @@
                                 ?> 
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $value->name }}</td>
+                                <td>{{ $value->name ?? ""}}</td>
                                 <td>
                                     <a class="btn btn-primary editrole" href="javascript:void(0)" data-action = "<?php echo URL::to($prefix.'permissions/get-permission'); ?>" data-status="{{ $value->status }}" data-id="{{ $value->id }}" data-toggle="modal" data-target="#rolemodal">Edit</a>                    
                                     <!-- <a href="Javascript:void();" class="btn btn-primary delete_role" data-id="{{ $value->id }}" data-action="<?php echo URL::to($prefix.'permissions/delete-permission'); ?>">Delete</a> -->

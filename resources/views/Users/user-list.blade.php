@@ -38,9 +38,9 @@
                                     ?> 
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ ucwords($user->UserRole->name) ?? ""}}</td>
+                                    <td>{{ $user->name ?? ""}}</td>
+                                    <td>{{ $user->email ?? "" }}</td>
+                                    <td>{{ ucwords($user->UserRole->name ?? "") }}</td>
                                     
                                     <td>
                                         <a class="btn btn-primary" href="{{url($prefix.'users/'.Crypt::encrypt($user->id).'/edit')}}" >Edit</a>

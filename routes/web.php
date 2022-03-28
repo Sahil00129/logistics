@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ConsignerController;
+use App\Http\Controllers\ConsigneeController;
 
 /*
 |--------------------------------------------------------------------------
