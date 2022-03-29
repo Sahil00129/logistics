@@ -11,7 +11,7 @@
                 <div class="widget-content widget-content-area br-6">
                     <div style="margin-left:9px;" class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                         <div class="breadcrumb-title pe-3"><h5>Users</h5></div>
-                        <div class="ms-auto" style="margin: 10px 0 0px 830px">
+                        <div class="ms-auto" style="margin: 10px 0 0px 812px">
                             <div class="btn-group">
                                 <a href="{{ route('users.create') }}" class="btn btn-primary pull-right">Create User</a>
                             </div>

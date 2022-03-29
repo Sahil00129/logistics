@@ -42,6 +42,7 @@
                                 <td>{{ $value->phone }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{url($prefix.'consigners/'.Crypt::encrypt($value->id).'/edit')}}" >Edit</a>
+                                    <a class="btn btn-primary" href="{{url($prefix.'consigners/'.Crypt::encrypt($value->id))}}" >View</a>
                                     <a href="Javascript:void();" class="btn btn-danger delete_consigner" data-id="{{ $value->id }}" data-action="<?php echo URL::to($prefix.'consigners/delete-consigner'); ?>">Delete</a>
                                 </td>
                             </tr>

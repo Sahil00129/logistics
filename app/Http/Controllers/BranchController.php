@@ -107,9 +107,12 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($branch)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($branch);
+        $getbranch = Branch::where('id',$id)->with('GetState')->first();
+        return view('Branch.view-branch',['prefix'=>$this->prefix,'title'=>$this->title,'getbranch'=>$getbranch]);
     }
 
     /**

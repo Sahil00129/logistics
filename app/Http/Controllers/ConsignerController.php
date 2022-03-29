@@ -109,9 +109,12 @@ class ConsignerController extends Controller
      * @param  \App\Models\Consigner  $consigner
      * @return \Illuminate\Http\Response
      */
-    public function show(Consigner $consigner)
+    public function show($consigner)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($consigner);
+        $getconsigner = Consigner::where('id',$id)->with('GetBranch','GetState')->first();
+        return view('Consigners.view-consigner',['prefix'=>$this->prefix,'title'=>$this->title,'getconsigner'=>$getconsigner]);
     }
 
     /**

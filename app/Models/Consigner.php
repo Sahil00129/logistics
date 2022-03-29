@@ -20,4 +20,12 @@ class Consigner extends Model
         return $this->belongsTo('App\Models\State','state_id');
     }
 
+    public function GetBranch(){
+        return $this->hasOne('App\Models\Branch','id','branch_id');
+    }
+
+    public function GetState(){
+        return $this->hasOne('App\Models\State','id','state_id');
+    }
+
 }
