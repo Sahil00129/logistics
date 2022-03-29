@@ -161,6 +161,8 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
+                minlength:10,
+                // maxlength:10,
             },            
         },
         messages: {
@@ -176,6 +178,8 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+                // maxlength: "Maximum length sholud not more than 10 digits"
             },
         },
         submitHandler : function(form)
@@ -200,6 +204,7 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
+                minlength:10,
             },            
         },
         messages: {
@@ -215,6 +220,7 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
             },
         },
         submitHandler : function(form)
@@ -239,6 +245,7 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
+                minlength: 10,
             },      
         },
         messages: {
@@ -254,6 +261,7 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
             },
         },
         submitHandler : function(form)
@@ -278,6 +286,7 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
+                minlength: 10,
             },       
         },
         messages: {
@@ -293,6 +302,7 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
             },
         },
         submitHandler : function(form)
@@ -317,6 +327,7 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
+                minlength: 10,
             },            
         },
         messages: {
@@ -332,6 +343,7 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
             },
         },
         submitHandler : function(form)
@@ -356,7 +368,8 @@ $('#updateuser').validate({
             },
             phone : {
                 Numbers: true,
-            },            
+                minlength: 10,
+            },
         },
         messages: {
             nick_name: {
@@ -371,6 +384,7 @@ $('#updateuser').validate({
             },
             phone: {
                 Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
             },
         },
         submitHandler : function(form)

@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Telephone</label>
-                                    <input type="text" class="form-control mbCheckNm" name="phone" placeholder="Phone">
+                                    <input type="text" class="form-control mbCheckNm" name="phone" placeholder="Phone" maxlength="10">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Status</label>
