@@ -393,6 +393,88 @@ $('#updateuser').validate({
         }
     });
 
+    /*===== create agent =====*/
+    $('#createagent').validate({ 
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true,
+                regex: "",
+            },
+            address : {
+                // required: true,
+            },
+            phone : {
+                Numbers: true,
+                minlength: 10,
+            },            
+        },
+        messages: {
+            name: {
+                required: "Enter Name",
+            },
+            email: {
+                required: "Enter Email",
+                email: "Enter correct email address",
+            },
+            address: {
+                required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+            },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
+    /*===== update agent =====*/
+    $('#updateagent').validate({ 
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true,
+                regex: "",
+            },
+            address : {
+                // required: true,
+            },
+            phone : {
+                Numbers: true,
+                minlength: 10,
+            },            
+        },
+        messages: {
+            name: {
+                required: "Enter Name",
+            },
+            email: {
+                required: "Enter Email",
+                email: "Enter correct email address",
+            },
+            address: {
+                required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+            },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
 
 
 });
@@ -519,6 +601,8 @@ function formSubmitRedirect(form)
             }else if(response.page == 'consigner-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},500);
             }else if(response.page == 'consignee-update'){
+                setTimeout(() => {window.location.href = response.redirect_url},500);
+            }else if(response.page == 'agent-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},500);
             }
 
