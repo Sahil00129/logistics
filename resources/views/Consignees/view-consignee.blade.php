@@ -99,7 +99,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">State</th>
-                                        <td>{{isset($getconsignee->GetBranch->name) ? ucfirst($getconsignee->GetBranch->name) : "-" }}</td>
+                                        <td>{{isset($getconsignee->GetState->name) ? ucfirst($getconsignee->GetState->name) : "-" }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Status</th>
