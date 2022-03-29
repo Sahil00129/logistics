@@ -41,7 +41,8 @@
                                 <td>{{isset($value->State->name) ? ucfirst($value->State->name) : "-"}}</td>
                                 <td>{{ $value->consignment_note }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{url($prefix.'branches/'.Crypt::encrypt($value->id).'/edit')}}" >Edit</a>
+                                    <a class="btn btn-primary" href="{{url($prefix.'branches/'.Crypt::encrypt($value->id).'/edit')}}" >Edit<span><i class="fa fa-edit"></i></span></a>
+                                    <a class="btn btn-primary" href="{{url($prefix.'branches/'.Crypt::encrypt($value->id))}}" >View</a>
                                     <a href="Javascript:void();" class="btn btn-danger delete_branch" data-id="{{ $value->id }}" data-action="<?php echo URL::to($prefix.'branches/delete-branch'); ?>">Delete</a>
                                 </td>
                             </tr>

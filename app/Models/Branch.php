@@ -15,4 +15,8 @@ class Branch extends Model
     public function State(){
         return $this->belongsTo('App\Models\State','state_id');
     }
+
+    public function GetState(){
+        return $this->hasOne('App\Models\State','id','state_id');
+    }
 }
