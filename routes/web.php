@@ -9,6 +9,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ConsignerController;
 use App\Http\Controllers\ConsigneeController;
+use App\Http\Controllers\AgentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('consignees', ConsigneeController::class);
     Route::post('consignees/update-consignee', [ConsigneeController::class, 'updateConsignee']);
     Route::post('consignees/delete-consignee', [ConsigneeController::class, 'deleteConsignee']);
+
+    Route::resource('agents', AgentController::class);
+    Route::post('agents/update-agent', [AgentController::class, 'updateAgent']);
+    Route::post('agents/delete-agent', [AgentController::class, 'deleteAgent']);
 
 });
 

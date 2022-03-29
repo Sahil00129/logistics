@@ -19,7 +19,8 @@
                         </div> -->
                         <div class="widget-content widget-content-area">
                             {!! Form::open(array('route' => 'consignees.store','method'=>'POST', 'id'=>'createconsignee', 'class'=>'general_form')) !!}
-                                <div class="form-row mb-0">                          
+                                
+                                <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Consignee Nick Name</label>
                                         <input type="text" class="form-control" name="nick_name" placeholder="">
