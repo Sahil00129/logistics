@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Telephone</label>
-                                    <input type="text" class="form-control" name="phone" value="{{old('phone',isset($getbranch->phone)?$getbranch->phone:'')}}" placeholder="Phone">
+                                    <input type="text" class="form-control mbCheckNm" name="phone" value="{{old('phone',isset($getbranch->phone)?$getbranch->phone:'')}}" placeholder="Phone">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Status</label>

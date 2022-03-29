@@ -5,6 +5,7 @@ jQuery(document).ready(function(){
         return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address.");
 
+    /*========== Enter only number ========*/
     jQuery(document).on('keyup blur', '.mbCheckNm', function(e){
         e.preventDefault();
         var key  = e.charCode || e.keyCode || 0;
@@ -13,6 +14,11 @@ jQuery(document).ready(function(){
           return false;
         }
     });
+
+    /*========== Number ========*/
+    $.validator.addMethod("Numbers", function(value, element) {
+        return this.optional(element) || /^[0-9]*$/.test(value);
+    }, "Please enter numeric values only.");
 
     /*========== create user in users ========*/
     // $(document).on('submit','.general_form',function(e){
@@ -152,6 +158,9 @@ $('#updateuser').validate({
             },
             address_line1 : {
               required: true,
+            },
+            phone : {
+                Numbers: true,
             },            
         },
         messages: {
@@ -164,6 +173,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)
@@ -185,6 +197,9 @@ $('#updateuser').validate({
             },
             address_line1 : {
               required: true,
+            },
+            phone : {
+                Numbers: true,
             },            
         },
         messages: {
@@ -197,6 +212,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)
@@ -218,7 +236,10 @@ $('#updateuser').validate({
             },
             address_line1 : {
                 // required: true,
-            },            
+            },
+            phone : {
+                Numbers: true,
+            },      
         },
         messages: {
             nick_name: {
@@ -230,6 +251,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)
@@ -251,7 +275,10 @@ $('#updateuser').validate({
             },
             address_line1 : {
                 // required: true,
-            },            
+            },
+            phone : {
+                Numbers: true,
+            },       
         },
         messages: {
             nick_name: {
@@ -263,6 +290,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)
@@ -284,6 +314,9 @@ $('#updateuser').validate({
             },
             address_line1 : {
                 // required: true,
+            },
+            phone : {
+                Numbers: true,
             },            
         },
         messages: {
@@ -296,6 +329,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)
@@ -317,6 +353,9 @@ $('#updateuser').validate({
             },
             address_line1 : {
                 // required: true,
+            },
+            phone : {
+                Numbers: true,
             },            
         },
         messages: {
@@ -329,6 +368,9 @@ $('#updateuser').validate({
             },
             address_line1: {
                 required: "Enter address1",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
             },
         },
         submitHandler : function(form)

@@ -120,9 +120,7 @@ class ConsigneeController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($consignee);
-
         $getconsignee = Consignee::where('id',$id)->with('GetConsigner','GetBranch','GetState')->first();
-           // dd($getconsignee);
         return view('Consignees.view-consignee',['prefix'=>$this->prefix,'title'=>$this->title,'getconsignee'=>$getconsignee]);
     }
 
