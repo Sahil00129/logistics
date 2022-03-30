@@ -18,7 +18,7 @@
                 </div>
                 <div class="table-responsive mb-4 mt-4">
                     @csrf
-                    <table id="branchtable" class="table table-hover get-datatable" style="width:100%">
+                    <table id="agenttable" class="table table-hover get-datatable" style="width:100%">
                         <thead>
                             <tr>
                                 <!-- <th>Sr No.</th> -->
@@ -89,7 +89,7 @@
     </div>
 </div>
 
-@include('models.delete-branch')
+@include('models.delete-agent')
 @endsection
 <!-- @section('js')
 <script type="text/javascript">

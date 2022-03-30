@@ -150,6 +150,32 @@ jQuery(document).ready(function(){
     });
     /*===== End delete Consignee =====*/
 
+    /*===== delete Agent =====*/
+    jQuery(document).on('click', '.delete_agent', function(){
+        jQuery('#deleteagent').modal('show');
+        var agentid =  jQuery(this).attr('data-id');
+        var url =  jQuery(this).attr('data-action');
+        jQuery(document).off('click','.deleteagentconfirm').on('click', '.deleteagentconfirm', function(){
+           
+            jQuery.ajax({
+                type      : 'post',
+                url       : url,
+                data      : {agentid:agentid},
+                headers   : {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType : "JSON",
+                success:function(data){
+                    if(data){
+                        jQuery("#agenttable").load(" #agenttable");
+                        jQuery("#deleteagent").modal("hide");
+                    }
+                }
+            });
+        });
+    });
+    /*===== End delete Agent =====*/
+
 
 });
 /*====== End document ready function =====*/ 
