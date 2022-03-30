@@ -9,6 +9,8 @@ use DB;
 use URL;
 use Helper;
 use Validator;
+use Image;
+use Storage;
 
 class AgentController extends Controller
 {
@@ -16,7 +18,6 @@ class AgentController extends Controller
     {
         $this->title =  "Agents Listing";
         $this->segment = \Request::segment(2);
-
     }
     /**
      * Display a listing of the resource.
@@ -79,8 +80,23 @@ class AgentController extends Controller
         $agentsave['agent_type']       = $request->agent_type;
         $agentsave['is_lane_approved'] = $request->is_lane_approved;
         $agentsave['address']          = $request->address;
-        $agentsave['pan_card']         = $request->pan_card;
-        $agentsave['cancel_cheque']    = $request->cancel_cheque;
+        $agentsave['status']           = '1';
+
+        // upload pan card image
+        if($request->pan_card){
+            $file = $request->file('pan_card');
+            $path = 'public/images/pan_images';
+            $name = Helper::uploadImage($file,$path);
+            $agentsave['pan_card']  = $name;
+        }
+
+        // upload cancel cheque image
+        if($request->cancel_cheque){
+            $file = $request->file('cancel_cheque');
+            $path = 'public/images/cancelcheque_images';
+            $name = Helper::uploadImage($file,$path);
+            $agentsave['cancel_cheque']  = $name;
+        }
 
         $saveagent = Agent::create($agentsave); 
         if($saveagent)
@@ -209,8 +225,13 @@ class AgentController extends Controller
      * @param  \App\Models\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agent $agent)
+    public function deleteAgent(Request $request)
     {
-        //
+        Agent::where('id',$request->agentid)->delete();
+
+        $response['success']         = true;
+        $response['success_message'] = 'Agent deleted successfully';
+        $response['error']           = false;
+        return response()->json($response);
     }
 }

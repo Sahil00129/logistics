@@ -107,11 +107,11 @@
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Pan Card</label>
-                                        <input type="file" class="form-control" name="pan_card" placeholder="">
+                                        <input type="file" class="form-control pancard_image" name="pan_card" accept="image/*">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Cancel Cheque</label>
-                                        <input type="file" class="form-control" name="cancel_cheque" placeholder="">
+                                        <input type="file" class="form-control cancelcheque_image" name="cancel_cheque" accept="image/*">
                                     </div>
                                 </div>
                                     
