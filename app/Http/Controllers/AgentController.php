@@ -58,6 +58,8 @@ class AgentController extends Controller
         $rules = array(
             'name' => 'required',
             'email' => 'required|unique:agents',
+            'pan_card' => 'mimes:jpg,jpeg,png|max:4096',
+            'cancel_cheque' => 'mimes:jpg,jpeg,png|max:4096',
         );
         $validator = Validator::make($request->all(),$rules);
     
@@ -164,9 +166,11 @@ class AgentController extends Controller
     {
         try { 
             $this->prefix = request()->route()->getPrefix();
-             $rules = array(
-              'name' => 'required',
-              'email'  => 'required',
+            $rules = array(
+                'name' => 'required',
+                'email'  => 'required',
+                'pan_card' => 'mimes:jpg,jpeg,png|max:4096',
+                'cancel_cheque' => 'mimes:jpg,jpeg,png|max:4096',
             );
 
             $validator = Validator::make($request->all(),$rules);
