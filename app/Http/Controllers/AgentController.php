@@ -189,8 +189,8 @@ class AgentController extends Controller
             $agentsave['agent_type']       = $request->agent_type;
             $agentsave['is_lane_approved'] = $request->is_lane_approved;
             $agentsave['address']          = $request->address;
-            $agentsave['pan_card']         = $request->pan_card;
-            $agentsave['cancel_cheque']    = $request->cancel_cheque;
+            // $agentsave['pan_card']         = $request->pan_card;
+            // $agentsave['cancel_cheque']    = $request->cancel_cheque;
             
             $saveagent = Agent::where('id',$request->agent_id)->update($agentsave);
             
