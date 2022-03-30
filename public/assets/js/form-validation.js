@@ -101,7 +101,7 @@ jQuery(document).ready(function(){
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -132,7 +132,7 @@ $('#updateuser').validate({
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -167,7 +167,7 @@ $('#updateuser').validate({
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -209,7 +209,7 @@ $('#updateuser').validate({
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -250,7 +250,7 @@ $('#updateuser').validate({
         },
         messages: {
             nick_name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -291,7 +291,7 @@ $('#updateuser').validate({
         },
         messages: {
             nick_name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -332,7 +332,7 @@ $('#updateuser').validate({
         },
         messages: {
             nick_name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -373,7 +373,7 @@ $('#updateuser').validate({
         },
         messages: {
             nick_name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -420,7 +420,7 @@ $('#updateuser').validate({
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -473,7 +473,7 @@ $('#updateuser').validate({
         },
         messages: {
             name: {
-                required: "Enter Name",
+                required: "Enter name",
             },
             email: {
                 required: "Enter Email",
@@ -492,6 +492,74 @@ $('#updateuser').validate({
             is_lane_approved : {
                 required: "Select lane approval",
             },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
+    /*===== create driver =====*/
+    $('#createdriver').validate({ 
+        rules: {
+            name: {
+                required: true
+            },
+            phone : {
+                required: true,
+                Numbers: true,
+                minlength: 10,
+            },
+            license_number : {
+                required: true,
+            },         
+        },
+        messages: {
+            name: {
+                required: "Enter name",
+            },
+            phone: {
+                required: "Enter phone number",
+                Numbers : "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+            },
+            license_number : {
+                required: "Enter license number",
+            }, 
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
+    /*===== update driver =====*/
+    $('#updatedriver').validate({ 
+        rules: {
+            name: {
+                required: true
+            },
+            phone : {
+                required: true,
+                Numbers: true,
+                minlength: 10,
+            },
+            license_number : {
+                required: true,
+            },         
+        },
+        messages: {
+            name: {
+                required: "Enter name",
+            },
+            phone: {
+                required: "Enter phone number",
+                Numbers : "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+            },
+            license_number : {
+                required: "Enter license number",
+            }, 
         },
         submitHandler : function(form)
         {
@@ -617,17 +685,19 @@ function formSubmitRedirect(form)
             {
                 $('#'+form.id).trigger('reset');
             }else if(response.page == 'user-update'){
-                setTimeout(() => {window.location.href = response.redirect_url},500);
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'role'){
                 setTimeout(() => {window.location.href = response.redirect_url},1000);
             }else if(response.page == 'branch-update'){
-                setTimeout(() => {window.location.href = response.redirect_url},500);
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'consigner-update'){
-                setTimeout(() => {window.location.href = response.redirect_url},500);
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'consignee-update'){
-                setTimeout(() => {window.location.href = response.redirect_url},500);
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'agent-update'){
-                setTimeout(() => {window.location.href = response.redirect_url},500);
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
+            }else if(response.page == 'driver-update'){
+                setTimeout(() => {window.location.href = response.redirect_url},2000);
             }
 
             if(response.formErrors)

@@ -10,6 +10,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ConsignerController;
 use App\Http\Controllers\ConsigneeController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('agents', AgentController::class);
     Route::post('agents/update-agent', [AgentController::class, 'updateAgent']);
     Route::post('agents/delete-agent', [AgentController::class, 'deleteAgent']);
+
+    Route::resource('drivers', DriverController::class);
+    Route::post('drivers/update-driver', [DriverController::class, 'updateDriver']);
+    Route::post('drivers/delete-driver', [DriverController::class, 'deleteDriver']);
 
 });
 

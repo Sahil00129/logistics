@@ -176,6 +176,32 @@ jQuery(document).ready(function(){
     });
     /*===== End delete Agent =====*/
 
+    /*===== delete Driver =====*/
+    jQuery(document).on('click', '.delete_driver', function(){
+        jQuery('#deletedriver').modal('show');
+        var driverid =  jQuery(this).attr('data-id');
+        var url =  jQuery(this).attr('data-action');
+        jQuery(document).off('click','.deletedriverconfirm').on('click', '.deletedriverconfirm', function(){
+           
+            jQuery.ajax({
+                type      : 'post',
+                url       : url,
+                data      : {driverid:driverid},
+                headers   : {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType : "JSON",
+                success:function(data){
+                    if(data){
+                        jQuery("#drivertable").load(" #drivertable");
+                        jQuery("#deletedriver").modal("hide");
+                    }
+                }
+            });
+        });
+    });
+    /*===== End delete Driver =====*/
+
 
 });
 /*====== End document ready function =====*/ 
