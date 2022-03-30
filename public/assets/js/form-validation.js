@@ -410,7 +410,13 @@ $('#updateuser').validate({
             phone : {
                 Numbers: true,
                 minlength: 10,
-            },            
+            },
+            agent_type : {
+                required: true,
+            }, 
+            is_lane_approved : {
+                required: true,
+            },          
         },
         messages: {
             name: {
@@ -426,6 +432,12 @@ $('#updateuser').validate({
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
+            },
+            agent_type : {
+                required: "Select agent type",
+            }, 
+            is_lane_approved : {
+                required: "Select lane approved",
             },
         },
         submitHandler : function(form)
@@ -451,7 +463,13 @@ $('#updateuser').validate({
             phone : {
                 Numbers: true,
                 minlength: 10,
-            },            
+            },
+            agent_type : {
+                required: true,
+            }, 
+            is_lane_approved : {
+                required: true,
+            },           
         },
         messages: {
             name: {
@@ -467,6 +485,12 @@ $('#updateuser').validate({
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
+            },
+            agent_type : {
+                required: "Select agent type",
+            }, 
+            is_lane_approved : {
+                required: "Select lane approved",
             },
         },
         submitHandler : function(form)
