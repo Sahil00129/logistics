@@ -10,5 +10,5 @@ class Bank extends Model
     use HasFactory;
     protected $fillable = [
         'agent_id', 'bank_name', 'branch_name', 'ifsc', 'account_number', 'account_holdername', 'status','created_at','updated_at'
-    ];       
+    ];
 }

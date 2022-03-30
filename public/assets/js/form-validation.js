@@ -437,7 +437,7 @@ $('#updateuser').validate({
                 required: "Select agent type",
             }, 
             is_lane_approved : {
-                required: "Select lane approved",
+                required: "Select lane approval",
             },
         },
         submitHandler : function(form)
@@ -490,7 +490,7 @@ $('#updateuser').validate({
                 required: "Select agent type",
             }, 
             is_lane_approved : {
-                required: "Select lane approved",
+                required: "Select lane approval",
             },
         },
         submitHandler : function(form)

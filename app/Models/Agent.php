@@ -16,4 +16,8 @@ class Agent extends Model
     {
         return $this->hasOne('App\models\Bank','agent_id','id');
     }
+
+    public function GetBranch(){
+        return $this->hasOne('App\Models\Branch','id','branch_id');
+    }
 }

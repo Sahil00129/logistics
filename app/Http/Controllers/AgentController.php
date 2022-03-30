@@ -12,6 +12,12 @@ use Validator;
 
 class AgentController extends Controller
 {
+    public function __construct()
+    {
+        $this->title =  "Agents Listing";
+        $this->segment = \Request::segment(2);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -108,9 +114,12 @@ class AgentController extends Controller
      * @param  \App\Models\Agent  $agent
      * @return \Illuminate\Http\Response
      */
-    public function show(Agent $agent)
+    public function show($agent)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($agent);
+        $getagent = Agent::where('id',$id)->with('Agent','GetBranch')->first();
+        return view('Agents.view-agent',['prefix'=>$this->prefix,'title'=>$this->title,'getagent'=>$getagent]);
     }
 
     /**
