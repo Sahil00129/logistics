@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Address</label>
-                                    <textarea type="" class="form-control" name="address" value="{{old('address',isset($getagent->address)?$getagent->address:'')}}" placeholder="" cols="5" rows="5"></textarea>
+                                    <textarea class="form-control" name="address" placeholder="" cols="5" rows="5">{{old('address',isset($getagent->address)?$getagent->address:'')}}</textarea>
                                 </div>
                                 <h4>Bank Details</h4>
                                 <div class="form-row mb-0">

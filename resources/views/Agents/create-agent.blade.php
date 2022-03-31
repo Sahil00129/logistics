@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Address</label>
-                                    <textarea type="" class="form-control" name="address" cols="5" rows="5" placeholder=""></textarea>
+                                    <textarea class="form-control" name="address" cols="5" rows="5" placeholder=""></textarea>
                                 </div>
                                 <h5>Bank Details</h5>
                                 <div class="form-row mb-0">

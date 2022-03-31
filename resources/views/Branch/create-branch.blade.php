@@ -20,41 +20,13 @@
                         </div> -->
                         <div class="widget-content widget-content-area">
                             {!! Form::open(array('route' => 'branches.store','method'=>'POST', 'id'=>'createbranch', 'class'=>'general_form')) !!}
-                            <!-- <form class="general_form" method="POST" action="{{url($prefix.'users')}}" id="createuser"> -->
                                 
-                                <div class="form-group mb-4">
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
                                     <label for="exampleFormControlInput2">Branch Name</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Address Line 1</label>
-                                    <input type="text" class="form-control" name="address_line1" placeholder="Address Line 1">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Address Line 2</label>
-                                    <input type="text" class="form-control" name="address_line2" placeholder="Address Line 2">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Address Line 3</label>
-                                    <input type="text" class="form-control" name="address_line3" placeholder="Address Line 3">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">GSTIN No.</label>
-                                    <input type="text" class="form-control" name="gstin_number" placeholder="GSTIN No">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">City</label>
-                                    <input type="text" class="form-control" name="city" placeholder="City">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">District</label>
-                                    <input type="text" class="form-control" name="district" placeholder="District">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Pincode</label>
-                                    <input type="text" class="form-control" name="postal_code" placeholder="Pincode">
                                 </div>                                
-                                <div class="form-group mb-4">
+                                <div class="form-group col-md-6">
                                     <label for="exampleFormControlSelect1">Select State</label>
                                     <select class="form-control" name="state_id">
                                         <option value="">Select</option>
@@ -69,19 +41,49 @@
                                         ?>                            
                                     </select>
                                 </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Consignment Note</label>
-                                    <input type="text" class="form-control" name="consignment_note" placeholder="Pincode">
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">GST No.</label>
+                                    <input type="text" class="form-control" name="gstin_number" placeholder="GST No">
                                 </div>
-                                <div class="form-group mb-4">
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
                                     <label for="exampleFormControlInput2">Email ID</label>
                                     <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
-                                <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Telephone</label>
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">Phone</label>
                                     <input type="text" class="form-control mbCheckNm" name="phone" placeholder="Phone" maxlength="10">
                                 </div>
-                                <div class="form-group mb-4">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlInput2">Address</label>
+                                <textarea type="" class="form-control" name="address" cols="5" rows="5" placeholder=""></textarea>
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">City</label>
+                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">District</label>
+                                    <input type="text" class="form-control" name="district" placeholder="District">
+                                </div>
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">Pincode</label>
+                                    <input type="text" class="form-control" name="postal_code" placeholder="Pincode">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="exampleFormControlInput2">Consignment Note</label>
+                                    <input type="text" class="form-control" name="consignment_note" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-row mb-0">
+                                <div class="form-group col-md-6">
                                     <label for="exampleFormControlInput2">Status</label>
                                     <div class="check-box d-flex">
                                         <div class="checkbox radio">
@@ -96,12 +98,13 @@
                                                <span class="checkmark"></span>
                                             </label>
                                         </div>
-                                    </div>                                    
+                                    </div>                             
                                 </div>
-                                    
-                                <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary">
-                                <a class="btn btn-primary" href="{{ route('branches.index') }}"> Back</a>
-                                {!! Form::close() !!}
+                            </div>
+                                
+                            <input type="submit" name="" class="mt-4 mb-4 btn btn-primary">
+                            <a class="btn btn-primary" href="{{ route('branches.index') }}"> Back</a>
+                            {!! Form::close() !!}
 
                         </div>
                     </div>

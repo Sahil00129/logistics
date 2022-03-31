@@ -105,9 +105,12 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($driver)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($driver);
+        $getdriver = Driver::where('id',$id)->first();
+        return view('Drivers.view-driver',['prefix'=>$this->prefix,'title'=>$this->title,'getdriver'=>$getdriver]);
     }
 
     /**

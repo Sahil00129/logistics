@@ -22,9 +22,7 @@ class CreateConsignersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('branch_id')->nullable();
             $table->string('email')->nullable();
-            $table->string('address_line1')->nullable();
-            $table->string('address_line2')->nullable();
-            $table->string('address_line3')->nullable();
+            $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->string('postal_code')->nullable();

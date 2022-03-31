@@ -58,13 +58,20 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-0">                          
+                                <div class="form-row mb-0">        
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Type Of Dealer</label>
-                                        <select class="form-control" name="dealer_type">
+                                        <label for="exampleFormControlSelect1">Select State</label>
+                                        <select class="form-control" name="state_id">
                                             <option value="">Select</option>
-                                            <option value="1" {{$getconsignee->dealer_type == '1' ? 'selected' : ''}}>Registered</option>
-                                            <option value="0" {{$getconsignee->dealer_type == '0' ? 'selected' : ''}}>Unregistered</option>
+                                            <?php 
+                                            if(count($states)>0) {
+                                                foreach ($states as $k => $state) {
+                                            ?>
+                                                <option value="{{ $k }}" {{ $k == $getconsignee->state_id ? 'selected' : ''}}>{{ucwords($state)}}</option> 
+                                              <?php 
+                                                }
+                                            }
+                                            ?>                            
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -78,14 +85,22 @@
                                         <input type="text" class="form-control" name="contact_name" value="{{old('contact_name',isset($getconsignee->contact_name)?$getconsignee->contact_name:'')}}" placeholder="Contact Name">
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Email ID</label>
+                                        <input type="email" class="form-control" name="email" value="{{old('email',isset($getconsignee->email)?$getconsignee->email:'')}}" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Mobile No.</label>
                                         <input type="text" class="form-control mbCheckNm" name="phone" value="{{old('phone',isset($getconsignee->phone)?$getconsignee->phone:'')}}" placeholder="Phone" maxlength="10">
                                     </div>
-                                </div>
-                                <div class="form-row mb-0">                          
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlInput2">Email ID</label>
-                                        <input type="email" class="form-control" name="email" value="{{old('email',isset($getconsignee->email)?$getconsignee->email:'')}}" placeholder="Email">
+                                        <label for="exampleFormControlSelect1">Type Of Dealer</label>
+                                        <select class="form-control" name="dealer_type">
+                                            <option value="">Select</option>
+                                            <option value="1" {{$getconsignee->dealer_type == '1' ? 'selected' : ''}}>Registered</option>
+                                            <option value="0" {{$getconsignee->dealer_type == '0' ? 'selected' : ''}}>Unregistered</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">                          
@@ -132,24 +147,8 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Pincode</label>
                                         <input type="text" class="form-control" name="postal_code" value="{{old('postal_code',isset($getconsignee->postal_code)?$getconsignee->postal_code:'')}}" placeholder="Pincode">
-                                    </div>                                
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Select State</label>
-                                        <select class="form-control" name="state_id">
-                                            <option value="">Select</option>
-                                            <?php 
-                                            if(count($states)>0) {
-                                                foreach ($states as $k => $state) {
-                                            ?>
-                                                <option value="{{ $k }}" {{ $k == $getconsignee->state_id ? 'selected' : ''}}>{{ucwords($state)}}</option> 
-                                              <?php 
-                                                }
-                                            }
-                                            ?>                            
-                                        </select>
                                     </div>
-                                </div>
-                                <div class="form-row mb-0">
+                                    <div class="form-row col-md-6">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Status</label>
                                         <div class="check-box d-flex">
@@ -167,6 +166,7 @@
                                             </div>
                                         </div>                                    
                                     </div>
+                                </div>
                                 </div>
 
                                 <input type="submit" class="mt-4 mb-4 btn btn-primary" value="Update">

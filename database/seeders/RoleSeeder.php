@@ -16,35 +16,23 @@ class RoleSeeder extends Seeder
     {
         $input = [
             [
-                'name' => 'owner',
+                'name' => 'Owner',
                 'slug' => 'owner',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'name' => 'admin',
-                'slug' => 'admin',
+                'name' => 'Branch Manager',
+                'slug' => 'branch-manager',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'name' => 'manager',
-                'slug' => 'manager',
+                'name' => 'Account Manager',
+                'slug' => 'account-manager',
                 'status' => 1,
                 'created_at' => time()
-            ],
-            [
-                'name' => 'sales',
-                'slug' => 'sales',
-                'status' => 1,
-                'created_at' => time()
-            ],
-            [
-                'name' => 'vendor',
-                'slug' => 'vendor',
-                'status' => 1,
-                'created_at' => time()
-            ],     
+            ],  
             
         ];
         foreach ($input as $val) {

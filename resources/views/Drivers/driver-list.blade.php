@@ -40,7 +40,7 @@
                                 <td>{{ ucfirst($value->license_number) }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{url($prefix.'drivers/'.Crypt::encrypt($value->id).'/edit')}}" >Edit<span><i class="fa fa-edit"></i></span></a>
-                                    <a class="btn btn-primary" href="{{url($prefix.'drivers/'.Crypt::encrypt($value->id))}}" >View</a>
+                                    <!-- <a class="btn btn-primary" href="{{url($prefix.'drivers/'.Crypt::encrypt($value->id))}}" >View</a> -->
                                     <a href="Javascript:void();" class="btn btn-danger delete_driver" data-id="{{ $value->id }}" data-action="<?php echo URL::to($prefix.'drivers/delete-driver'); ?>">Delete</a>
                                 </td>
                             </tr>
@@ -67,13 +67,3 @@
 
 @include('models.delete-driver')
 @endsection
-<!-- @section('js')
-<script type="text/javascript">
-$('.widget-content .delete_branch').on('click', function () {
-    var branchid =  jQuery(this).attr('data-id');
-    var url =  jQuery(this).attr('data-action');
-    alert("gjj");
-   
-})
-</script>
-@endsection -->
