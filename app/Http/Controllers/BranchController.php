@@ -72,9 +72,7 @@ class BranchController extends Controller
         }
 
         $branchsave['name']             = $request->name;
-        $branchsave['address_line1']    = $request->address_line1;
-        $branchsave['address_line2']    = $request->address_line2;
-        $branchsave['address_line3']    = $request->address_line3;
+        $branchsave['address']          = $request->address;
         $branchsave['gstin_number']     = $request->gstin_number;
         $branchsave['city']             = $request->city;
         $branchsave['district']         = $request->district;
@@ -158,9 +156,7 @@ class BranchController extends Controller
             }
 
             $branchsave['name']             = $request->name;
-            $branchsave['address_line1']    = $request->address_line1;
-            $branchsave['address_line2']    = $request->address_line2;
-            $branchsave['address_line3']    = $request->address_line3;
+            $branchsave['address']          = $request->address;
             $branchsave['gstin_number']     = $request->gstin_number;
             $branchsave['city']             = $request->city;
             $branchsave['district']         = $request->district;

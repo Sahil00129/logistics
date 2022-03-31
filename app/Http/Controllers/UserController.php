@@ -24,7 +24,6 @@ class UserController extends Controller
     {
       $this->title =  "Users Listing";
       $this->segment = \Request::segment(2);
-
     }
 
      /**
@@ -53,7 +52,6 @@ class UserController extends Controller
         $getpermissions = Permission::all();
         $getroles = Role::all();
 
-        // $getroles = Role::pluck('name','name')->all();
         return view('Users.create-user',['getroles'=>$getroles, 'getpermissions'=>$getpermissions,'prefix'=>$this->prefix]);
     }
     
@@ -71,7 +69,7 @@ class UserController extends Controller
             'name' => 'required',
             // 'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required',
         );
 
         $validator = Validator::make($request->all(),$rules);
@@ -83,18 +81,17 @@ class UserController extends Controller
             $response['validation']  = false;
             $response['formErrors']  = true;
             $response['errors']      = $errors;
-            dd($response);
             return response()->json($response);
         }
         if(!empty($request->name)){
-          $usersave['name']   = $request->name;
+            $usersave['name']   = $request->name;
         }
         if(!empty($request->email)){
-          $usersave['email']  = $request->email;
+            $usersave['email']  = $request->email;
         }
         if(!empty($request->password)){
-          $usersave['password'] = Hash::make($request->password);
-            // $usersave['password'] = Crypt::encryptString($request->password);
+            $usersave['password'] = $request->password;
+          // $usersave['password'] = Hash::make($request->password);
         }
 
         if(!empty($request->role_id)){
@@ -181,9 +178,9 @@ class UserController extends Controller
     {
       try { 
         $this->prefix = request()->route()->getPrefix();
-         $rules = array(
-          'name' => 'required',
-          'email'  => 'required',
+        $rules = array(
+            'name' => 'required',
+            'email'  => 'required',
         );
 
         $validator = Validator::make($request->all(),$rules);
@@ -199,6 +196,7 @@ class UserController extends Controller
             $usersave['name']        = $request->name;
             $usersave['email']       = $request->email;
             $usersave['role_id']     = $request->role_id;
+            $usersave['password']     = $request->password;
             
             User::where('id',$request->user_id)->update($usersave);
 

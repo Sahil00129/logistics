@@ -6,7 +6,7 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3"><h5>Agent Details</h5></div>
+                    <div class="breadcrumb-title pe-3"><h5>Driver Details</h5></div>
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -15,81 +15,26 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Agent Name</th>
-                                        <td>{{isset($getagent->name)?ucfirst($getagent->name):'-'}} </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Branch Name</th>
-                                        <td>{{isset($getagent->GetBranch->name) ? ucfirst($getagent->GetBranch->name) : "-" }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Email ID</th>
-                                        <td>{{isset($getagent->email)?ucfirst($getagent->email):'-'}}</td>
+                                        <th scope="row">Driver Name</th>
+                                        <td>{{isset($getdriver->name)?ucfirst($getdriver->name):'-'}} </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Phone</th>
-                                        <td>{{isset($getagent->phone) ? $getagent->phone:'-'}}</td>
+                                        <td>{{isset($getdriver->phone) ? ucfirst($getdriver->phone) : "-" }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">GST NO.</th>
-                                        <td>{{isset($getagent->gst_number)?ucfirst($getagent->gst_number):'-'}}</td>
+                                        <th scope="row">Driver License Number</th>
+                                        <td>{{isset($getdriver->license_number)?ucfirst($getdriver->license_number):'-'}}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">Pan NO.</th>
-                                        <td>{{isset($getagent->pan_number)?ucfirst($getagent->pan_number):'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Agent Type</th>
-                                        <td>
-                                            <?php if($getagent->agent_type == 1){
-                                                echo "Contracted";
-                                            }else if($getagent->agent_type == 0){
-                                                echo "Non-Contracted";
-                                            } else{ ?>
-                                                 {{$getagent->agent_type ?? "-"}}
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Required Lane Wise Approval</th>
-                                        <td>
-                                            <?php if($getagent->is_lane_approved == 1){
-                                                echo "Yes";
-                                            }else if($getagent->is_lane_approved == 0){
-                                                echo "No";
-                                            } else{ ?>
-                                                 {{$getagent->is_lane_approved ?? "-"}}
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Address</th>
-                                        <td>{{isset($getagent->address)?ucfirst($getagent->address):'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Bank Name</th>
-                                        <td>{{isset($getagent->Agent->bank_name)?ucfirst($getagent->Agent->bank_name):'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Branch Name</th>
-                                        <td>{{isset($getagent->Agent->branch_name) ? ucfirst($getagent->Agent->branch_name):'-'}} </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">IFSC</th>
-                                        <td>{{isset($getagent->Agent->ifsc) ? $getagent->Agent->ifsc:'-'}} </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Account No</th>
-                                        <td>{{isset($getagent->Agent->account_number) ? $getagent->Agent->account_number:'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Account Holder Name</th>
-                                        <td>{{isset($getagent->Agent->account_holdername) ? ucfirst($getagent->Agent->account_holdername) : "-" }}</td>
-                                    </tr>
+                                    <!-- <tr>
+                                        <th scope="row">Driver License Image</th>
+                                        <td>{{isset($getdriver->license_image) ? $getdriver->license_image:'-'}}</td>
+                                    </tr> -->
+                                    
                                                                             
                                 </tbody>
                             </table>  
-                            <a class="btn btn-primary" href="{{ route('agents.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('drivers.index') }}"> Back</a>
                         </div>
                     </div>
                 </div>

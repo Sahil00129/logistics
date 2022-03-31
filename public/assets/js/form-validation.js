@@ -97,7 +97,11 @@ jQuery(document).ready(function(){
             },
             password : {
               minlength : 5
-            },            
+            },
+            phone : {
+                Numbers: true,
+                minlength:10,
+            },          
         },
         messages: {
             name: {
@@ -106,6 +110,11 @@ jQuery(document).ready(function(){
             email: {
                 required: "Enter Email",
                 email: "Enter correct email address",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+                // maxlength: "Maximum length sholud not more than 10 digits"
             },
         },
         submitHandler : function(form)
@@ -128,7 +137,11 @@ $('#updateuser').validate({
             },
             password : {
               minlength : 5
-            },            
+            },
+            phone : {
+                Numbers: true,
+                minlength:10,
+            },          
         },
         messages: {
             name: {
@@ -137,6 +150,11 @@ $('#updateuser').validate({
             email: {
                 required: "Enter Email",
                 email: "Enter correct email address",
+            },
+            phone: {
+                Numbers: "Enter only numbers",
+                minlength: "Enter at least 10 digits",
+                // maxlength: "Maximum length sholud not more than 10 digits"
             },
         },
         submitHandler : function(form)

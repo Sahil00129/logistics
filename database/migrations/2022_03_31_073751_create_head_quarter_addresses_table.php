@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\HeadQuarterAddresses;
 
-class CreateBranchesTable extends Migration
+class CreateHeadQuarterAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +14,13 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('head_quarter_addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
             $table->text('address')->nullable();
-            $table->string('gstin_number')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->string('postal_code')->nullable();
-            $table->string('state_id')->nullable();
-            $table->text('consignment_note')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->tinyinteger('status')->default(1)->comment('1=>active 2=>not active');
+            $table->tinyinteger('status')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +32,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('head_quarter_addresses');
     }
 }

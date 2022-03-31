@@ -71,21 +71,19 @@ class ConsignerController extends Controller
             $response['errors']      = $errors;
             return response()->json($response);
         }
-        $consignersave['nick_name']      = $request->nick_name;
-        $consignersave['legal_name']     = $request->legal_name;
-        $consignersave['gst_number']     = $request->gst_number;
-        $consignersave['contact_name']   = $request->contact_name;
-        $consignersave['phone']          = $request->phone;
-        $consignersave['branch_id']      = $request->branch_id;
-        $consignersave['email']          = $request->email;
-        $consignersave['address_line1']  = $request->address_line1;
-        $consignersave['address_line2']  = $request->address_line2;
-        $consignersave['address_line3']  = $request->address_line3;
-        $consignersave['city']           = $request->city;
-        $consignersave['district']       = $request->district;
-        $consignersave['postal_code']    = $request->postal_code;
-        $consignersave['state_id']       = $request->state_id;
-        $consignersave['status']         = $request->status;
+        $consignersave['nick_name']    = $request->nick_name;
+        $consignersave['legal_name']   = $request->legal_name;
+        $consignersave['gst_number']   = $request->gst_number;
+        $consignersave['contact_name'] = $request->contact_name;
+        $consignersave['phone']        = $request->phone;
+        $consignersave['branch_id']    = $request->branch_id;
+        $consignersave['email']        = $request->email;
+        $consignersave['address']      = $request->address;
+        $consignersave['city']         = $request->city;
+        $consignersave['district']     = $request->district;
+        $consignersave['postal_code']  = $request->postal_code;
+        $consignersave['state_id']     = $request->state_id;
+        $consignersave['status']       = $request->status;
 
         $saveconsigner = Consigner::create($consignersave); 
         if($saveconsigner)
@@ -160,21 +158,19 @@ class ConsignerController extends Controller
                 return response()->json($response);
             }
 
-            $consignersave['nick_name']      = $request->nick_name;
-            $consignersave['legal_name']     = $request->legal_name;
-            $consignersave['gst_number']     = $request->gst_number;
-            $consignersave['contact_name']   = $request->contact_name;
-            $consignersave['phone']          = $request->phone;
-            $consignersave['branch_id']      = $request->branch_id;
-            $consignersave['email']          = $request->email;
-            $consignersave['address_line1']  = $request->address_line1;
-            $consignersave['address_line2']  = $request->address_line2;
-            $consignersave['address_line3']  = $request->address_line3;
-            $consignersave['city']           = $request->city;
-            $consignersave['district']       = $request->district;
-            $consignersave['postal_code']    = $request->postal_code;
-            $consignersave['state_id']       = $request->state_id;
-            $consignersave['status']         = $request->status;
+            $consignersave['nick_name']    = $request->nick_name;
+            $consignersave['legal_name']   = $request->legal_name;
+            $consignersave['gst_number']   = $request->gst_number;
+            $consignersave['contact_name'] = $request->contact_name;
+            $consignersave['phone']        = $request->phone;
+            $consignersave['branch_id']    = $request->branch_id;
+            $consignersave['email']        = $request->email;
+            $consignersave['address']      = $request->address;
+            $consignersave['city']         = $request->city;
+            $consignersave['district']     = $request->district;
+            $consignersave['postal_code']  = $request->postal_code;
+            $consignersave['state_id']     = $request->state_id;
+            $consignersave['status']       = $request->status;
             
             Consigner::where('id',$request->consigner_id)->update($consignersave);
             $url    =   URL::to($this->prefix.'consigners');

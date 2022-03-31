@@ -30,7 +30,7 @@ class RoleController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
         $query = Role::query();
-        $roles = $query->orderBy('id','DESC')->paginate($peritem);
+        $roles = $query->paginate($peritem);
         return view('Roles.role-list',['roles'=>$roles,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

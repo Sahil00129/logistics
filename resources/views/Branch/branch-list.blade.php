@@ -23,7 +23,7 @@
                             <tr>
                                 <th>Sr No.</th>
                                 <th>Branch Name</th>
-                                <th>GSTIN No.</th>
+                                <th>GST No.</th>
                                 <th>State</th>
                                 <th>Consignment note</th>
                                 <th>Action</th>

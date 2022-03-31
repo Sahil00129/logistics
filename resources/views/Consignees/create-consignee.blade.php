@@ -10,13 +10,6 @@
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
-                        <!-- <div class="widget-header">                                
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Create New Branch</h4>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="widget-content widget-content-area">
                             {!! Form::open(array('route' => 'consignees.store','method'=>'POST', 'id'=>'createconsignee', 'class'=>'general_form')) !!}
                                 
@@ -62,13 +55,20 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row mb-0">                          
+                                <div class="form-row mb-0">     
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Type Of Dealer</label>
-                                        <select class="form-control" name="dealer_type">
+                                        <label for="exampleFormControlSelect1">Select State</label>
+                                        <select class="form-control" name="state_id">
                                             <option value="">Select</option>
-                                            <option value="1">Registered</option>
-                                            <option value="0">Unregistered</option>
+                                            <?php 
+                                            if(count($states)>0) {
+                                                foreach ($states as $key => $state) {
+                                            ?>
+                                                <option value="{{ $key }}">{{ucwords($state)}}</option>
+                                              <?php 
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -86,10 +86,18 @@
                                         <input type="tel" class="form-control mbCheckNm" name="phone" placeholder="Enter 10 digit mobile no" maxlength="10">
                                     </div>
                                 </div>
-                                <div class="form-row mb-0">                          
+                                <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Email ID</label>
                                         <input type="email" class="form-control" name="email" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlSelect1">Type Of Dealer</label>
+                                        <select class="form-control" name="dealer_type">
+                                            <option value="">Select</option>
+                                            <option value="1">Registered</option>
+                                            <option value="0">Unregistered</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">
@@ -137,23 +145,7 @@
                                         <label for="exampleFormControlInput2">Pincode</label>
                                         <input type="text" class="form-control" name="postal_code" placeholder="Pincode">
                                     </div>                          
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Select State</label>
-                                        <select class="form-control" name="state_id">
-                                            <option value="">Select</option>
-                                            <?php 
-                                            if(count($states)>0) {
-                                                foreach ($states as $key => $state) {
-                                            ?>
-                                                <option value="{{ $key }}">{{ucwords($state)}}</option>
-                                              <?php 
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row mb-0">
+                                    <div class="form-row col-md-6">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Status</label>
                                         <div class="check-box d-flex">
@@ -172,6 +164,8 @@
                                         </div>                                    
                                     </div>
                                 </div>
+                                </div>
+                                
                                     
                                 <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary">
                                 <a class="btn btn-primary" href="{{ route('consignees.index') }}"> Back</a>

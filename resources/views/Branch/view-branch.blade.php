@@ -19,19 +19,11 @@
                                         <td>{{isset($getbranch->name)?ucfirst($getbranch->name):'-'}} </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Address Line 1</th>
-                                        <td>{{isset($getbranch->address_line1)?ucfirst($getbranch->address_line1):'-'}} </td>
+                                        <th scope="row">Address</th>
+                                        <td>{{isset($getbranch->address)?ucfirst($getbranch->address):'-'}} </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Address Line 2</th>
-                                        <td>{{isset($getbranch->address_line2)?ucfirst($getbranch->address_line2):'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Address Line 3</th>
-                                        <td>{{isset($getbranch->address_line3)?ucfirst($getbranch->address_line3):'-'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">GSTNO.</th>
+                                        <th scope="row">GST NO.</th>
                                         <td>{{isset($getbranch->gstin_number)?ucfirst($getbranch->gstin_number):'-'}}</td>
                                     </tr>
                                     <tr>

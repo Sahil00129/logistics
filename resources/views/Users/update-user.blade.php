@@ -30,11 +30,11 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Password</label>
-                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="">
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="{{old('password',isset($getuser->password)?$getuser->password:'')}}">
                                 </div>
                                 <div class="form-group mb-4">
-                                    <label for="exampleFormControlInput2">Confirm Password</label>
-                                    <input type="text" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm Password" value="">
+                                    <label for="exampleFormControlInput2">Phone</label>
+                                    <input type="text" class="form-control mbCheckNm" name="phone" id="phone" placeholder="" value="{{old('phone',isset($getuser->phone)?$getuser->phone:'')}}"  maxlength="10">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlSelect1">Select Role</label>
