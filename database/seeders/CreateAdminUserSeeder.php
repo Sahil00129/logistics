@@ -26,7 +26,8 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@yopmail.com',
-                'password' => Hash::make('admin786'), // secret
+                'password' => '123456',
+                // 'password' => Hash::make('admin786'), // secret
                 'role_id' => Role::where('name', 'owner')->first()->id,
                 'status' => 1,
                 'created_at' => time(),
