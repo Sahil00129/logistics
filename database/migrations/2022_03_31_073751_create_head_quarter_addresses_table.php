@@ -16,7 +16,7 @@ class CreateHeadQuarterAddressesTable extends Migration
     {
         Schema::create('head_quarter_addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('address')->nullable();
+            $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->string('postal_code')->nullable();
