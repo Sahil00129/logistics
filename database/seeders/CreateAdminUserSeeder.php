@@ -6,11 +6,8 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-// use Spatie\Permission\Models\Role;
-// use Spatie\Permission\Models\Permission;
 use App\Models\Role;
-use App\Models\UserRole
-use App\models\Permission;
+use App\Models\UserRole;
 
 class CreateAdminUserSeeder extends Seeder
 {
