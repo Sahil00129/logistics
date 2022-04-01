@@ -11,6 +11,7 @@ use App\Http\Controllers\ConsignerController;
 use App\Http\Controllers\ConsigneeController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\BrokerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +60,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('consignees/update-consignee', [ConsigneeController::class, 'updateConsignee']);
     Route::post('consignees/delete-consignee', [ConsigneeController::class, 'deleteConsignee']);
 
-    Route::resource('agents', AgentController::class);
-    Route::post('agents/update-agent', [AgentController::class, 'updateAgent']);
-    Route::post('agents/delete-agent', [AgentController::class, 'deleteAgent']);
+    Route::resource('brokers', BrokerController::class);
+    Route::post('brokers/update-broker', [BrokerController::class, 'updateBroker']);
+    Route::post('brokers/delete-broker', [BrokerController::class, 'deleteBroker']);
 
     Route::resource('drivers', DriverController::class);
     Route::post('drivers/update-driver', [DriverController::class, 'updateDriver']);

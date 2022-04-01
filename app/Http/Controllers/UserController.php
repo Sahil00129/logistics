@@ -10,6 +10,7 @@ use App\Models\UserPermission;
 use App\Models\Permission;
 use DB;
 use URL;
+use Helper;
 use Hash;
 use Crypt;
 use Validator;
@@ -51,8 +52,9 @@ class UserController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $getpermissions = Permission::all();
         $getroles = Role::all();
+        $branches = Helper::getBranches();
 
-        return view('Users.create-user',['getroles'=>$getroles, 'getpermissions'=>$getpermissions,'prefix'=>$this->prefix]);
+        return view('Users.create-user',['getroles'=>$getroles, 'getpermissions'=>$getpermissions, 'branches'=>$branches, 'prefix'=>$this->prefix]);
     }
     
     /**
@@ -90,13 +92,14 @@ class UserController extends Controller
             $usersave['email']  = $request->email;
         }
         if(!empty($request->password)){
-          $usersave['password'] = Hash::make($request->password);
+            $usersave['password'] = Hash::make($request->password);
         }
 
         if(!empty($request->role_id)){
-          $usersave['role_id']  = $request->role_id;
+            $usersave['role_id']  = $request->role_id;
         }
-        $usersave['phone']       = $request->phone;
+        $usersave['branch_id']  = $request->branch_id;
+        $usersave['phone']      = $request->phone;
         $usersave['status']     = "1";
 
         $saveuser = User::create($usersave); 
@@ -152,8 +155,9 @@ class UserController extends Controller
         $getroles = Role::all();
         $getpermissions = Permission::all();
         $allpermissioncount = Permission::all()->count();
-     
         $getuserpermissions = UserPermission::where('user_id',$id)->get();
+        $branches = Helper::getBranches();
+
         $u = array();
         if(count($getuserpermissions) > 0)
         {
@@ -163,7 +167,7 @@ class UserController extends Controller
             }
         }
         $getuser = User::where('id',$id)->first();
-        return view('Users.update-user')->with(['prefix'=>$this->prefix,'title'=>$this->title,'getuser'=>$getuser,'getroles'=>$getroles,'getpermissions'=>$getpermissions,'getuserpermissions'=>$u,'allpermissioncount'=>$allpermissioncount]);
+        return view('Users.update-user')->with(['prefix'=>$this->prefix,'title'=>$this->title,'getuser'=>$getuser,'getroles'=>$getroles,'getpermissions'=>$getpermissions,'getuserpermissions'=>$u,'allpermissioncount'=>$allpermissioncount,'branches'=>$branches]);
     }
     
     /**
@@ -196,14 +200,15 @@ class UserController extends Controller
 
         $getpass = User::where('id',$request->user_id)->get();
 
-        $usersave['name']        = $request->name;
-        $usersave['email']       = $request->email;
-        $usersave['role_id']     = $request->role_id;
-        $usersave['phone']       = $request->phone;
+        $usersave['name']       = $request->name;
+        $usersave['email']      = $request->email;
+        $usersave['role_id']    = $request->role_id;
+        $usersave['phone']      = $request->phone;
+        $usersave['branch_id']  = $request->branch_id;
         if(!empty($request->password)){
-            $usersave['password']     = Hash::make($request->password);
+            $usersave['password'] = Hash::make($request->password);
         }else if(!empty($getpass->password)){
-            $usersave['password']     = $getpass->password;
+            $usersave['password'] = $getpass->password;
         }
             
             User::where('id',$request->user_id)->update($usersave);

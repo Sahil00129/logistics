@@ -9,6 +9,7 @@ use DB;
 use URL;
 use Helper;
 use Validator;
+use Auth;
 
 class BranchController extends Controller
 {
@@ -28,7 +29,13 @@ class BranchController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
         $query = Branch::query();
-        $branches = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
+        $authuser = Auth::user();
+        if($authuser->role_id == 1){
+            $branches = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
+        }
+        else{
+            $branches = $query->where('id',$authuser->branch_id)->orderBy('id','DESC')->with('State')->paginate($peritem);
+        }
         return view('Branch.branch-list',['branches'=>$branches,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
