@@ -136,12 +136,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //    // dd("show");
-    //     $user = User::find($id);
-    //     return view('users.show',compact('user'));
-    // }
+    public function show($user)
+    {
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($user);
+        $getuser = User::where('id',$id)->with('UserRole')->first();
+        return view('Users.view-user',['prefix'=>$this->prefix,'title'=>$this->title,'getuser'=>$getuser]);
+    }
     
     /**
      * Show the form for editing the specified resource.
