@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\State;
 use DB;
 use URL;
+use Auth;
 use Helper;
 use Validator;
 
@@ -30,7 +31,12 @@ class ConsigneeController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
         $query = Consignee::query();
-        $consignees = $query->orderBy('id','DESC')->with(['Consigner'])->paginate($peritem);
+        $authuser = Auth::user();
+        if($authuser->role_id == 2){
+            $consignees = $query->where('branch_id',$authuser->branch_id)->orderBy('id','DESC')->with(['Consigner'])->paginate($peritem);
+        }else{
+            $consignees = $query->orderBy('id','DESC')->with(['Consigner'])->paginate($peritem);
+        }
         return view('Consignees.consignee-list',['consignees'=>$consignees,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

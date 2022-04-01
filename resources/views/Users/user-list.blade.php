@@ -27,6 +27,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Roles</th>
+                                    <th style="display: none;">Password</th>
                                     <th>Action</th>
                                     <!-- <th class="no-content"></th> -->
                                 </tr>
@@ -41,7 +42,7 @@
                                     <td>{{ $user->name ?? ""}}</td>
                                     <td>{{ $user->email ?? "" }}</td>
                                     <td>{{ ucwords($user->UserRole->name ?? "") }}</td>
-                                    
+                                    <td style="display: none;">{{ $user->user_password ?? "" }}</td>
                                     <td>
                                         <a class="btn btn-primary" href="{{url($prefix.'users/'.Crypt::encrypt($user->id).'/edit')}}" >Edit</a>
                                         <a href="Javascript:void();" class="btn btn-danger delete_user" data-id="{{ $user->id }}" data-action="<?php echo URL::to($prefix.'users/delete-user'); ?>">Delete</a>
