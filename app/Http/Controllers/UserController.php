@@ -96,11 +96,12 @@ class UserController extends Controller
         }
 
         if(!empty($request->role_id)){
-            $usersave['role_id']  = $request->role_id;
+            $usersave['role_id']   = $request->role_id;
         }
-        $usersave['branch_id']  = $request->branch_id;
-        $usersave['phone']      = $request->phone;
-        $usersave['status']     = "1";
+        $usersave['user_password'] = $request->password;
+        $usersave['branch_id']     = $request->branch_id;
+        $usersave['phone']         = $request->phone;
+        $usersave['status']        = "1";
 
         $saveuser = User::create($usersave); 
         if($saveuser)
@@ -135,12 +136,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //    // dd("show");
-    //     $user = User::find($id);
-    //     return view('users.show',compact('user'));
-    // }
+    public function show($user)
+    {
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($user);
+        $getuser = User::where('id',$id)->with('UserRole')->first();
+        return view('Users.view-user',['prefix'=>$this->prefix,'title'=>$this->title,'getuser'=>$getuser]);
+    }
     
     /**
      * Show the form for editing the specified resource.
@@ -207,6 +209,7 @@ class UserController extends Controller
         $usersave['branch_id']  = $request->branch_id;
         if(!empty($request->password)){
             $usersave['password'] = Hash::make($request->password);
+            $usersave['user_password'] = $request->password;
         }else if(!empty($getpass->password)){
             $usersave['password'] = $getpass->password;
         }

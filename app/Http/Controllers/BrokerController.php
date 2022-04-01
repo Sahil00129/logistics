@@ -7,6 +7,7 @@ use App\Models\Broker;
 use App\Models\Bank;
 use DB;
 use URL;
+use Auth;
 use Helper;
 use Validator;
 use Image;
@@ -29,7 +30,12 @@ class BrokerController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
         $query = Broker::query();
-        $brokers = $query->orderBy('id','DESC')->paginate($peritem);
+        $authuser = Auth::user();
+        if($authuser->role_id == 2){
+            $brokers = $query->where('branch_id',$authuser->branch_id)->orderBy('id','DESC')->paginate($peritem);
+        }else{
+            $brokers = $query->orderBy('id','DESC')->paginate($peritem);
+        }
         return view('Brokers.broker-list',['brokers'=>$brokers,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

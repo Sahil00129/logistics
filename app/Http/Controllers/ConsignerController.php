@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\State;
 use DB;
 use URL;
+use Auth;
 use Helper;
 use Validator;
 
@@ -29,7 +30,12 @@ class ConsignerController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
         $query = Consigner::query();
-        $consigners = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
+        $authuser = Auth::user();
+        if($authuser->role_id == 2){
+            $consigners = $query->where('branch_id',$authuser->branch_id)->orderBy('id','DESC')->with('State')->paginate($peritem);
+        }else{
+            $consigners = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
+        }
         return view('Consigners.consigner-list',['consigners'=>$consigners,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

@@ -19,3 +19,10 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/jquery.toast.css')}}">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+           
+    <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+    <!-- END PAGE LEVEL CUSTOM STYLES -->

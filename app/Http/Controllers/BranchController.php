@@ -30,11 +30,11 @@ class BranchController extends Controller
         $peritem = 20;
         $query = Branch::query();
         $authuser = Auth::user();
-        if($authuser->role_id == 1){
-            $branches = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
+        if($authuser->role_id == 2){
+            $branches = $query->where('id',$authuser->branch_id)->orderBy('id','DESC')->with('State')->paginate($peritem);
         }
         else{
-            $branches = $query->where('id',$authuser->branch_id)->orderBy('id','DESC')->with('State')->paginate($peritem);
+            $branches = $query->orderBy('id','DESC')->with('State')->paginate($peritem);
         }
         return view('Branch.branch-list',['branches'=>$branches,'prefix'=>$this->prefix])
             ->with('i', ($request->input('page', 1) - 1) * 5);
