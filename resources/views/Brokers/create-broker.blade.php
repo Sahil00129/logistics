@@ -6,17 +6,17 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3"><h5>Create new agent</h5></div>
+                    <div class="breadcrumb-title pe-3"><h5>Create new broker</h5></div>
                     
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-content widget-content-area">
-                            {!! Form::open(array('route' => 'agents.store','method'=>'POST', 'id'=>'createagent', 'class'=>'general_form')) !!}
+                            {!! Form::open(array('route' => 'brokers.store','method'=>'POST', 'id'=>'createbroker', 'class'=>'general_form')) !!}
                                 
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlInput2">Agent Name</label>
+                                        <label for="exampleFormControlInput2">Broker Name</label>
                                         <input type="text" class="form-control" name="name" id="name" placeholder="Name">
                                     </div>
                                     <div class="form-group col-md-6">
@@ -57,8 +57,8 @@
                                 </div>
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
-                                        <label for="exampleFormControlSelect1">Agent Type</label>
-                                        <select class="form-control" name="agent_type">
+                                        <label for="exampleFormControlSelect1">Broker Type</label>
+                                        <select class="form-control" name="broker_type">
                                             <option value="">Select</option>
                                             <option value="1">Contracted</option>
                                             <option value="0">Non-Contracted</option>
@@ -116,7 +116,7 @@
                                 </div>
                                     
                                 <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary">
-                                <a class="btn btn-primary" href="{{ route('agents.index') }}"> Back</a>
+                                <a class="btn btn-primary" href="{{ route('brokers.index') }}"> Back</a>
                                 {!! Form::close() !!}
 
                         </div>

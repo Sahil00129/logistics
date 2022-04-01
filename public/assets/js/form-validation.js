@@ -411,8 +411,8 @@ $('#updateuser').validate({
         }
     });
 
-    /*===== create agent =====*/
-    $('#createagent').validate({ 
+    /*===== create broker =====*/
+    $('#createbroker').validate({ 
         rules: {
             name: {
                 required: true
@@ -429,7 +429,7 @@ $('#updateuser').validate({
                 Numbers: true,
                 minlength: 10,
             },
-            agent_type : {
+            broker_type : {
                 required: true,
             }, 
             is_lane_approved : {
@@ -451,8 +451,8 @@ $('#updateuser').validate({
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
             },
-            agent_type : {
-                required: "Select agent type",
+            broker_type : {
+                required: "Select broker type",
             }, 
             is_lane_approved : {
                 required: "Select lane approval",
@@ -464,8 +464,8 @@ $('#updateuser').validate({
         }
     });
 
-    /*===== update agent =====*/
-    $('#updateagent').validate({ 
+    /*===== update broker =====*/
+    $('#updatebroker').validate({ 
         rules: {
             name: {
                 required: true
@@ -482,7 +482,7 @@ $('#updateuser').validate({
                 Numbers: true,
                 minlength: 10,
             },
-            agent_type : {
+            broker_type : {
                 required: true,
             }, 
             is_lane_approved : {
@@ -504,8 +504,8 @@ $('#updateuser').validate({
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
             },
-            agent_type : {
-                required: "Select agent type",
+            broker_type : {
+                required: "Select broker type",
             }, 
             is_lane_approved : {
                 required: "Select lane approval",
@@ -712,7 +712,7 @@ function formSubmitRedirect(form)
                 setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'consignee-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},2000);
-            }else if(response.page == 'agent-update'){
+            }else if(response.page == 'broker-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},2000);
             }else if(response.page == 'driver-update'){
                 setTimeout(() => {window.location.href = response.redirect_url},2000);

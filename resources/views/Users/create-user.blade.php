@@ -66,6 +66,21 @@
                                     ?>                            
                                     </select>
                                 </div>
+                                <div class="form-group mb-4">
+                                    <label for="exampleFormControlSelect1">Select Branch</label>
+                                    <select class="form-control" name="branch_id">
+                                        <option value="">Select</option>
+                                        <?php 
+                                        if(count($branches)>0) {
+                                            foreach ($branches as $key => $branch) {
+                                        ?>
+                                            <option value="{{ $key }}">{{ucwords($branch)}}</option>
+                                          <?php 
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                                     <div class="form-group mb-4">
                                         <hr class="brown-border">
                                     <h4 class="mt-3 mb-3">Permissions</h4>

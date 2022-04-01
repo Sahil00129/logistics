@@ -47,6 +47,21 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-4">
+                                        <label for="exampleFormControlSelect1">Branch</label>
+                                        <select class="form-control" name="branch_id">
+                                            <option value="">Select Branch</option>
+                                            <?php 
+                                            if(count($branches)>0) {
+                                                foreach ($branches as $k => $branch) {
+                                            ?>
+                                                <option value="{{ $k }}" {{ $k == $getuser->branch_id ? 'selected' : ''}}>{{ucwords($branch)}}</option>
+                                              <?php 
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <div class="form-group mb-4">
                                     <hr class="brown-border">
                                     <h4 class="mt-3 mb-3">Permissions</h4>
                                     <div class="permis checkbox selectAll"> 

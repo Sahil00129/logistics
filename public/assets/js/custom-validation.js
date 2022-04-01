@@ -150,31 +150,31 @@ jQuery(document).ready(function(){
     });
     /*===== End delete Consignee =====*/
 
-    /*===== delete Agent =====*/
-    jQuery(document).on('click', '.delete_agent', function(){
-        jQuery('#deleteagent').modal('show');
-        var agentid =  jQuery(this).attr('data-id');
+    /*===== delete Broker =====*/
+    jQuery(document).on('click', '.delete_broker', function(){
+        jQuery('#deletebroker').modal('show');
+        var brokerid =  jQuery(this).attr('data-id');
         var url =  jQuery(this).attr('data-action');
-        jQuery(document).off('click','.deleteagentconfirm').on('click', '.deleteagentconfirm', function(){
+        jQuery(document).off('click','.deletebrokerconfirm').on('click', '.deletebrokerconfirm', function(){
            
             jQuery.ajax({
                 type      : 'post',
                 url       : url,
-                data      : {agentid:agentid},
+                data      : {brokerid:brokerid},
                 headers   : {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 dataType : "JSON",
                 success:function(data){
                     if(data){
-                        jQuery("#agenttable").load(" #agenttable");
-                        jQuery("#deleteagent").modal("hide");
+                        jQuery("#brokertable").load(" #brokertable");
+                        jQuery("#deletebroker").modal("hide");
                     }
                 }
             });
         });
     });
-    /*===== End delete Agent =====*/
+    /*===== End delete Broker =====*/
 
     /*===== delete Driver =====*/
     jQuery(document).on('click', '.delete_driver', function(){
