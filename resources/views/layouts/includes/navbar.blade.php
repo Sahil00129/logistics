@@ -165,6 +165,11 @@
     <li class="nav-item dropdown user-profile-dropdown">
         <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <img src="{{asset('assets/img/90x90.jpg')}}" alt="">
+            <span class="user-name">
+                <?php
+                $authuser = Auth::user();
+                ?>{{ucfirst($authuser->name)}}
+            </span>
         </a>
         <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
             <div class="">
