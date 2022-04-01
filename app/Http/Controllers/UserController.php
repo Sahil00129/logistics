@@ -96,11 +96,12 @@ class UserController extends Controller
         }
 
         if(!empty($request->role_id)){
-            $usersave['role_id']  = $request->role_id;
+            $usersave['role_id']   = $request->role_id;
         }
-        $usersave['branch_id']  = $request->branch_id;
-        $usersave['phone']      = $request->phone;
-        $usersave['status']     = "1";
+        $usersave['user_password'] = $request->password;
+        $usersave['branch_id']     = $request->branch_id;
+        $usersave['phone']         = $request->phone;
+        $usersave['status']        = "1";
 
         $saveuser = User::create($usersave); 
         if($saveuser)
@@ -207,6 +208,7 @@ class UserController extends Controller
         $usersave['branch_id']  = $request->branch_id;
         if(!empty($request->password)){
             $usersave['password'] = Hash::make($request->password);
+            $usersave['user_password'] = $request->password;
         }else if(!empty($getpass->password)){
             $usersave['password'] = $getpass->password;
         }

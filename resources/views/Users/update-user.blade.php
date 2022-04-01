@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Password</label>
-                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="">
+                                    <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="{{old('user_password',isset($getuser->user_password)?$getuser->user_password:'')}}">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="exampleFormControlInput2">Phone</label>

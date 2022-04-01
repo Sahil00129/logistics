@@ -53,13 +53,6 @@
                             <?php 
                                 }
                             }
-                            else {
-                                ?>
-                                    <tr>
-                                        <td colspan="7" class="text-center">No Record Found </td>
-                                    </tr>
-                            <?php 
-                                }
                             ?>
                         </tbody>
                     </table>
