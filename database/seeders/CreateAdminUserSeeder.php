@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Models\Role;
 use App\Models\UserRole;
 
@@ -23,8 +23,7 @@ class CreateAdminUserSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@yopmail.com',
-                'password' => '123456',
-                // 'password' => Hash::make('admin786'), // secret
+                'password' => Hash::make('admin786'), // secret
                 'role_id' => Role::where('name', 'owner')->first()->id,
                 'status' => 1,
                 'created_at' => time(),

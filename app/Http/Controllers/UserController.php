@@ -90,13 +90,13 @@ class UserController extends Controller
             $usersave['email']  = $request->email;
         }
         if(!empty($request->password)){
-            $usersave['password'] = $request->password;
-          // $usersave['password'] = Hash::make($request->password);
+          $usersave['password'] = Hash::make($request->password);
         }
 
         if(!empty($request->role_id)){
           $usersave['role_id']  = $request->role_id;
         }
+        $usersave['phone']       = $request->phone;
         $usersave['status']     = "1";
 
         $saveuser = User::create($usersave); 
@@ -193,10 +193,18 @@ class UserController extends Controller
             $response['errors']      = $errors;
             return response()->json($response);
         }
-            $usersave['name']        = $request->name;
-            $usersave['email']       = $request->email;
-            $usersave['role_id']     = $request->role_id;
-            $usersave['password']     = $request->password;
+
+        $getpass = User::where('id',$request->user_id)->get();
+
+        $usersave['name']        = $request->name;
+        $usersave['email']       = $request->email;
+        $usersave['role_id']     = $request->role_id;
+        $usersave['phone']       = $request->phone;
+        if(!empty($request->password)){
+            $usersave['password']     = Hash::make($request->password);
+        }else if(!empty($getpass->password)){
+            $usersave['password']     = $getpass->password;
+        }
             
             User::where('id',$request->user_id)->update($usersave);
 

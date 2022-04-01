@@ -17,20 +17,35 @@ class UserPermissionSeeder extends Seeder
         //sidebar option name
         $input = [
             [
-                'name' => 'users',
-                'status' => 1,
-                'created_at' => time()
-            ],
-            [
                 'name' => 'dashboard',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'name' => 'managers',
+                'name' => 'users',
                 'status' => 1,
                 'created_at' => time()
-            ],     
+            ],
+            [
+                'name' => 'branches',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'consigners',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'consignees',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'agents',
+                'status' => 1,
+                'created_at' => time()
+            ],    
             
 
         ];
