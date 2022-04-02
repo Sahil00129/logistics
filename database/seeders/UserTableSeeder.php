@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\UserRole;
 
-class CreateAdminUserSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -24,7 +24,7 @@ class CreateAdminUserSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@yopmail.com',
                 'password' => Hash::make('admin786'), // secret
-                'role_id' => Role::where('name', 'owner')->first()->id,
+                'role_id' => Role::where('name', 'admin')->first()->id,
                 'status' => 1,
                 'created_at' => time(),
             ],

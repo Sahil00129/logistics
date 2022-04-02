@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -14,19 +14,43 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = [
-           'role-list',
-           'role-create',
-           'role-edit',
-           'role-delete',
-           'product-list',
-           'product-create',
-           'product-edit',
-           'product-delete'
+        //sidebar option name
+        $input = [
+            [
+                'name' => 'dashboard',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'users',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'branches',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'consigners',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'consignees',
+                'status' => 1,
+                'created_at' => time()
+            ],
+            [
+                'name' => 'brokers',
+                'status' => 1,
+                'created_at' => time()
+            ],    
+            
+
         ];
-     
-        foreach ($permissions as $permission) {
-             Permission::create(['name' => $permission]);
+        foreach ($input as $val) {
+            Permission::firstOrCreate($val);
         }
     }
 }

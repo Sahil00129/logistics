@@ -2,19 +2,19 @@ jQuery(document).ready(function(){
 
 	/*======== check box checked  create/update user permission page  ========*/
     jQuery(document).on('click','#ckbCheckAll',function(){
-        var getsearchmodel = jQuery(this).attr('data-search');
-        if(getsearchmodel == 'category'){
-            if(this.checked){
-                jQuery('#search-category .checkbox').each(function(){
-                  this.checked = true;
-                });
-            }else{
-                jQuery('#search-category .checkbox').each(function(){
-                  this.checked = false;
-                });
-            }
-        } 
-        else{
+        // var getsearchmodel = jQuery(this).attr('data-search');
+        // if(getsearchmodel == 'category'){
+        //     if(this.checked){
+        //         jQuery('#search-category .checkbox').each(function(){
+        //           this.checked = true;
+        //         });
+        //     }else{
+        //         jQuery('#search-category .checkbox').each(function(){
+        //           this.checked = false;
+        //         });
+        //     }
+        // } 
+        // else{
             if(this.checked){
                 jQuery('#dropdownMenuButton').prop('disabled', false);
                 jQuery('.chkBoxClass').each(function(){
@@ -27,7 +27,7 @@ jQuery(document).ready(function(){
                 });
                 jQuery('#dropdownMenuButton').prop('disabled', true);
             }
-        }
+        // }
     });
 
     jQuery(document).on('click','.chkBoxClass',function(){
