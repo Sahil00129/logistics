@@ -42,7 +42,7 @@ class PermissionTableSeeder extends Seeder
                 'created_at' => time()
             ],
             [
-                'name' => 'agents',
+                'name' => 'brokers',
                 'status' => 1,
                 'created_at' => time()
             ],    
