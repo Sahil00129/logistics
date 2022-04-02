@@ -210,6 +210,74 @@ jQuery(document).ready(function(){
     });
     /*===== End delete Driver =====*/
 
+    // wine image add more
+
+    let max_fields = 3;
+    var x = 1;
+    
+    $(".add_more_images").click(function(){
+       
+        var c = $('.images').length;
+        c  = c + 1;
+        var rows = '';
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+
+            rows+='<div class="images mt-3"><div class="row">';
+            rows+='<div class="col-md-2"><span class="file bg-brown rounded btn-md">';
+            rows+='<input type="file" data-id="'+c+'" name="files[]" class="first"/>';
+            rows+='<i class="fa fa-plus"></i> Add file</span>';
+            rows+='<p style="display:none;color:red" class="gif-errormsg'+c+'">Invalid image format</p>';
+            rows+='</div>';
+            // rows+='<div class="col-md-10 pl-0 imgsrc'+c+'">';
+            // // rows+='<span class="file_info">No files selected</span>';
+            // rows+='<div class="image_upload">';
+            // rows+='<img src="#" class="firstshow'+c+' image-fluid" style="display: none;">';
+            // rows+='</div><a href="javascript:void(0)" class="remove_field">';
+            // rows+='<i class="ml-2 red-text fa fa-trash"></div></div></div>';
+
+            // add new //
+            rows+='<a href="javascript:void(0)" class="remove_field">';
+            rows+='<i class="ml-2 red-text fa fa-trash">';
+            rows+='</div></div>';  
+            // end add new //
+            
+            $('.wine-image').append(rows);
+
+        }
+        else{
+            $("#error-msg").css("display", "block");
+            // $(".add_more_images").css("display", "none");
+            $(".add_more_images").attr("disabled", true);
+        }
+        var html = $("#wine-upload").html();
+        $(".after-add-more").after(html);
+        $(".change").append("<label for=''>&nbsp;</label><br/><a class='btn btn-danger remove'>- Remove</a>");
+    });
+
+    $('input[type="file"]').change(function(event) {
+        var _size = this.files[0].size;
+        var exactSize = Math.round(_size/(1024*1024));
+        //console.log('FILE SIZE = ',exactSize);
+        if (exactSize >="5") {
+           $("#size-error").show();
+        }
+        else {
+           $("#size-error").hide();
+        }
+    });
+
+    $(document).on("click",".remove_field", function(e){ //user click on remove text   
+        // $(this).parent('div').remove(); 
+        // $(this).parent().parent().parent().remove();
+        $(this).parent().remove();
+        x--;
+        // $(".add_more_images").css("display", "block");
+        $(".add_more_images").attr("disabled", false);
+        $("#error-msg").css("display", "none");
+    });
+
+
 
 });
 /*====== End document ready function =====*/ 

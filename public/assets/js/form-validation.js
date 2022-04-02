@@ -181,7 +181,10 @@ $('#updateuser').validate({
                 Numbers: true,
                 minlength:10,
                 // maxlength:10,
-            },            
+            },
+            "files[]":{
+                extension: "jpg|jpeg|png"
+            },          
         },
         messages: {
             name: {
@@ -198,6 +201,9 @@ $('#updateuser').validate({
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
                 // maxlength: "Maximum length sholud not more than 10 digits"
+            },
+            "files[]":{
+                extension: "Please choose a valid file"
             },
         },
         submitHandler : function(form)

@@ -82,6 +82,34 @@
                                     <input type="text" class="form-control" name="consignment_note" placeholder="">
                                 </div>
                             </div>
+                            <!-- Image upload -->
+                            <div class="text-left upload-main">
+                               <button type="button" class="btn bg-brown add_more_images pull-right themeBtns"><span><i class="fa fa-plus"></i> Add more</span></button>
+                               <span id="error-msg" class="pull-right" style="display:none">Maximum upload image upto 3 </span> 
+                               <span id="size-error" class="red-text" style="display: none;">Image size should be less than 5MB.</span>
+                               <label class="d-block">Upload Branch Images</label>
+
+                               <div class="wine-image noMargin">
+                                  <div class="images">
+                                    <div class="row">
+                                       <div class="col-md-2">
+                                        <span class="file bg-brown rounded btn-md">  
+                                           <input type="file" data-id="1" name="files[]" class="first" accept="image/*" />
+                                           <i class="fa fa-plus"></i> Add file
+                                        </span>
+                                        <p style="display:none;color:red" class="gif-errormsg1">Image invalid format</p>
+                                     </div>
+                                     <!-- <div class="col-md-10 pl-0 imgsrc1">   
+                                        <span class="file_info">No files selected</span>
+                                        <div class="image_upload">
+                                           <img src="" class="firstshow1 image-fluid" onerror="this.style.display='none'">
+                                        </div>
+                                     </div> -->
+                                  </div>
+                               </div>
+                            </div>
+                         </div> 
+                         <!-- end image upload -->
                             <div class="form-row mb-0">
                                 <div class="form-group col-md-6">
                                     <label for="exampleFormControlInput2">Status</label>

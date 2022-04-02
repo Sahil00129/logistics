@@ -64,6 +64,9 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+        try{
+            DB::beginTransaction();
+
         $this->prefix = request()->route()->getPrefix();
         $rules = array(
             'name' => 'required',
@@ -97,15 +100,37 @@ class BranchController extends Controller
         $savebranch = Branch::create($branchsave); 
         if($savebranch)
         {
+            // upload branch images
+                if($request->hasfile('files')){
+                    $files = $request->file('files');
+                    foreach($files as $file){
+                        $path = 'public/images/branch';
+                        $name = Helper::uploadImage($file,$path);
+                        $data[] = [
+                            'name' =>  $name,
+                            'branch_id' => $savebranch->id
+                        ];
+                    }
+                    $savebranch->images()->insert($data);
+                }
+
             $response['success'] = true;
             $response['success_message'] = "Branch Added successfully";
             $response['error'] = false;
             $response['resetform'] = true;
             $response['page'] = 'create-branch'; 
-        }else{
+        }
+        else{
             $response['success'] = false;
             $response['error_message'] = "Can not created branch please try again";
             $response['error'] = true;
+        }
+        DB::commit();
+        }catch(Exception $e){
+            $response['error'] = false;
+            $response['error_message'] = $e;
+            $response['success'] = false;
+            $response['redirect_url'] = $url;
         }
         return response()->json($response);
     }

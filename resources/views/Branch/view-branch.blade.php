@@ -11,7 +11,6 @@
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-content widget-content-area">
-                            
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
