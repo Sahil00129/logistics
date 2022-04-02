@@ -16,8 +16,8 @@ class RoleSeeder extends Seeder
     {
         $input = [
             [
-                'name' => 'Owner',
-                'slug' => 'owner',
+                'name' => 'Admin',
+                'slug' => 'admin',
                 'status' => 1,
                 'created_at' => time()
             ],
