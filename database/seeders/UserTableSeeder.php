@@ -24,6 +24,7 @@ class UserTableSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@yopmail.com',
                 'password' => Hash::make('admin786'), // secret
+                'user_password' => 'admin786',
                 'role_id' => Role::where('name', 'admin')->first()->id,
                 'status' => 1,
                 'created_at' => time(),
