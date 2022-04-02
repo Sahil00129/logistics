@@ -16,6 +16,7 @@
                         </div>
                     </div>
                 </div>
+                <p class="branch_error" style="display: none; color: red;">This Branch cannot be deleted because it's already in use.</p>
                 <div class="table-responsive mb-4 mt-4">
                     @csrf
                     <table id="branchtable" class="table table-hover get-datatable" style="width:100%">

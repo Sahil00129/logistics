@@ -39,7 +39,7 @@
                                     ?> 
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $user->name ?? ""}}</td>
+                                    <td>{{ ucwords($user->name ?? "")}}</td>
                                     <td>{{ $user->email ?? "" }}</td>
                                     <td>{{ ucwords($user->UserRole->name ?? "") }}</td>
                                     <td style="display: none;">{{ $user->user_password ?? "" }}</td>
