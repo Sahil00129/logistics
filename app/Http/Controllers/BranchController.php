@@ -8,6 +8,7 @@ use App\Models\State;
 use App\Models\Consigner;
 use App\Models\Consignee;
 use App\Models\Broker;
+use App\Models\User;
 use DB;
 use URL;
 use Helper;
@@ -206,12 +207,15 @@ class BranchController extends Controller
         $getconsignee = Consignee::where('branch_id',$request->branchid)->get();
         $getconsigner = Consigner::where('branch_id',$request->branchid)->get();
         $getbroker    = Broker::where('branch_id',$request->branchid)->get();
+        $getuser      = User::where('branch_id',$request->branchid)->get();
 
         if(!empty($getconsignee) && count($getconsignee) > 0){
             $response['success'] = false;
         }else if(!empty($getconsigner)&& count($getconsigner) > 0){
             $response['success'] = false;
         }else if(!empty($getbroker)&& count($getbroker) > 0){
+            $response['success'] = false;
+        }else if(!empty($getuser)&& count($getuser) > 0){
             $response['success'] = false;
         }else{
             Branch::where('id',$request->branchid)->delete();
