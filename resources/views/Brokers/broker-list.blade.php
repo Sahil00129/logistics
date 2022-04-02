@@ -71,14 +71,8 @@
                             <?php 
                                 }
                             }
-                            else {
-                                ?>
-                                    <tr>
-                                        <td colspan="7" class="text-center">No Record Found </td>
-                                    </tr>
-                            <?php 
-                                }
                             ?>
+                             
                         </tbody>
                     </table>
                     <!-- <div class="ml-auto mr-auto"><nav class="navigation2 text-center" aria-label="Page navigation">{{$brokers->links()}}</nav></div>
