@@ -87,10 +87,18 @@ jQuery(document).ready(function(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 dataType : "JSON",
-                success:function(data){
-                    if(data){
+                success:function(response){
+                    if(response.success){
                         jQuery("#branchtable").load(" #branchtable");
                         jQuery("#deletebranch").modal("hide");
+                    }
+                    else{
+                        jQuery("#deletebranch").modal("hide");
+                        jQuery('html,body').animate({ scrollTop: 0 }, 'slow');
+                        jQuery('.branch_error').show();
+                        setTimeout(function(){
+                         jQuery('.branch_error').fadeOut();
+                       },5000);
                     }
                 }
             });

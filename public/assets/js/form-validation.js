@@ -340,12 +340,12 @@ $('#updateuser').validate({
                 email: true,
                 regex: "",
             },
-            address_line1 : {
-                // required: true,
-            },
             phone : {
                 Numbers: true,
                 minlength: 10,
+            },
+            dealer_type : {
+                required: true,
             },            
         },
         messages: {
@@ -356,12 +356,12 @@ $('#updateuser').validate({
                 required: "Enter Email",
                 email: "Enter correct email address",
             },
-            address_line1: {
-                required: "Enter address1",
-            },
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
+            },
+            dealer_type : {
+                required: "Select dealer type",
             },
         },
         submitHandler : function(form)
@@ -381,12 +381,12 @@ $('#updateuser').validate({
                 email: true,
                 regex: "",
             },
-            address_line1 : {
-                // required: true,
-            },
             phone : {
                 Numbers: true,
                 minlength: 10,
+            },
+            dealer_type : {
+                required: true,
             },
         },
         messages: {
@@ -397,12 +397,12 @@ $('#updateuser').validate({
                 required: "Enter Email",
                 email: "Enter correct email address",
             },
-            address_line1: {
-                required: "Enter address1",
-            },
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
+            },
+            dealer_type : {
+                required: "Select dealer type",
             },
         },
         submitHandler : function(form)

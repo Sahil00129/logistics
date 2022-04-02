@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Branch;
 use App\Models\State;
+use App\Models\Consigner;
+use App\Models\Consignee;
+use App\Models\Broker;
 use DB;
 use URL;
 use Helper;
@@ -200,11 +203,23 @@ class BranchController extends Controller
      */
     public function deleteBranch(Request $request)
     {
-        Branch::where('id',$request->branchid)->delete();
+        $getconsignee = Consignee::where('branch_id',$request->branchid)->get();
+        $getconsigner = Consigner::where('branch_id',$request->branchid)->get();
+        $getbroker    = Broker::where('branch_id',$request->branchid)->get();
 
-        $response['success']         = true;
-        $response['success_message'] = 'Branch deleted successfully';
-        $response['error']           = false;
+        if(!empty($getconsignee) && count($getconsignee) > 0){
+            $response['success'] = false;
+        }else if(!empty($getconsigner)&& count($getconsigner) > 0){
+            $response['success'] = false;
+        }else if(!empty($getbroker)&& count($getbroker) > 0){
+            $response['success'] = false;
+        }else{
+            Branch::where('id',$request->branchid)->delete();
+
+            $response['success']         = true;
+            $response['success_message'] = 'Branch deleted successfully';
+            $response['error']           = false;
+        }
         return response()->json($response);
     }
 }
