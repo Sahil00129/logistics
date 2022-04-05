@@ -6,31 +6,10 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3">Users</div>
-                    <div class="ps-3">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Create new user</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <!-- <div class="ms-auto">
-                        <div class="btn-group">
-                            <a href="{{ route('users.index') }}" class="btn btn-primary pull-right">All User</a>
-                        </div>
-                    </div> -->
+                    <div class="breadcrumb-title pe-3"><h5>Create User</h5></div>
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
-                        <div class="widget-header">                                
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>Create New User</h4>
-                                </div>
-                            </div>
-                        </div>
                         <div class="widget-content widget-content-area">
                             {!! Form::open(array('route' => 'users.store','method'=>'POST', 'id'=>'createuser', 'class'=>'general_form')) !!}
                             <!-- <form class="general_form" method="POST" action="{{url($prefix.'users')}}" id="createuser"> -->

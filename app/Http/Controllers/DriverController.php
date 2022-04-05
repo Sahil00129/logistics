@@ -74,7 +74,7 @@ class DriverController extends Controller
         $driversave['license_number']   = $request->license_number;
         $driversave['status']           = '1';
 
-        // upload pan card image
+        // upload license image
         if($request->license_image){
             $file = $request->file('license_image');
             $path = 'public/images/driverlicense_images';
@@ -157,9 +157,16 @@ class DriverController extends Controller
             $driversave['name']           = $request->name;
             $driversave['phone']          = $request->phone;
             $driversave['license_number'] = $request->license_number;
+
+            // upload driver_license image
+            if($request->license_image){
+                $file = $request->file('license_image');
+                $path = 'public/images/driverlicense_images';
+                $name = Helper::uploadImage($file,$path); 
+                $driversave['license_image']  = $name;
+           }
             
             $savedriver = Driver::where('id',$request->driver_id)->update($driversave);
-
             $url    =   URL::to($this->prefix.'drivers');
 
             $response['page']            = 'driver-update';
@@ -167,7 +174,6 @@ class DriverController extends Controller
             $response['success_message'] = "Driver Updated Successfully";
             $response['error']           = false;
             $response['redirect_url']    = $url;
-            // $response['html'] = $html;
         }catch(Exception $e) {
             $response['error']         = false;
             $response['error_message'] = $e;
@@ -192,4 +198,26 @@ class DriverController extends Controller
         $response['error']           = false;
         return response()->json($response);
     }
+
+    // Delete pancard image from edit view
+    public function deletelicenseImage(Request $request)
+    {
+            $path = 'public/images/driverlicense_images';
+            $image_path=Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().$path;   
+            $getimagename = Driver::where('id',$request["licenseimgid"])->first(); 
+
+            $image_path=$image_path.'/'.$getimagename->license_image;
+            if (\File::exists($image_path)) {
+                unlink($image_path);
+            }
+            $deleteimage = Driver::where('id',$request->licenseimgid)->update(['license_image'=>null]); 
+
+            $response['success']           = true;
+            $response['success_message']   = 'License Image deleted successfully';
+            $response['error']             = false;
+            $response['deldriver_license'] = "deldriver_license";
+
+            return response()->json($response);
+    }
+
 }

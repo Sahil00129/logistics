@@ -7,6 +7,9 @@
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3"><h5>Broker Details</h5></div>
+                    <div class="col-md-10 text-right">
+                        <a href="{{url($prefix.'brokers/'.Crypt::encrypt($getbroker->id).'/edit')}}" class="btn my-3" href="" style="background:#fff;" title="Edit Broker"><i class="fa fa-edit m-0"></i></a>
+                    </div>
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -86,9 +89,30 @@
                                         <th scope="row">Account Holder Name</th>
                                         <td>{{isset($getbroker->Broker->account_holdername) ? ucfirst($getbroker->Broker->account_holdername) : "-" }}</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">Pan Card</th>
+                                        <td>
+                                            @if($getbroker->pan_card)
+                                              <img src="{{ url("storage/images/pancard_images").'/'.$getbroker->pan_card }}" class="img-cover" height="150" width="150">
+                                            @else
+                                              -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cancel Cheque</th>
+                                        <td>
+                                            @if($getbroker->cancel_cheque)
+                                              <img src="{{ url("storage/images/cancelcheque_images").'/'.$getbroker->cancel_cheque }}" class="img-cover" height="150" width="150">
+                                            @else
+                                              -
+                                            @endif
+                                        </td>
+                                    </tr>
                                                                             
                                 </tbody>
                             </table>  
+
                             <a class="btn btn-primary" href="{{ route('brokers.index') }}"> Back</a>
                         </div>
                     </div>

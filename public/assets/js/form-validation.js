@@ -229,7 +229,10 @@ $('#updateuser').validate({
             phone : {
                 Numbers: true,
                 minlength:10,
-            },            
+            },
+            "files[]":{
+                extension: "jpg|jpeg|png"
+            },           
         },
         messages: {
             name: {
@@ -245,6 +248,9 @@ $('#updateuser').validate({
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
+            },
+            "files[]":{
+                extension: "Please choose a valid file"
             },
         },
         submitHandler : function(form)

@@ -93,11 +93,10 @@ class BrokerController extends Controller
         // upload pan card image
         if($request->pan_card){
             $file = $request->file('pan_card');
-            $path = 'public/images/pan_images';
+            $path = 'public/images/pancard_images';
             $name = Helper::uploadImage($file,$path);
             $brokersave['pan_card']  = $name;
         }
-
         // upload cancel cheque image
         if($request->cancel_cheque){
             $file = $request->file('cancel_cheque');
@@ -105,8 +104,7 @@ class BrokerController extends Controller
             $name = Helper::uploadImage($file,$path);
             $brokersave['cancel_cheque']  = $name;
         }
-
-        $savebroker = Broker::create($brokersave); 
+        $savebroker = Broker::create($brokersave);
         if($savebroker)
         {
             $bankdetails['broker_id']          = $savebroker->id;
@@ -116,7 +114,6 @@ class BrokerController extends Controller
             $bankdetails['account_number']     = $request->account_number;
             $bankdetails['account_holdername'] = $request->account_holdername;
             
-
             $savebankdetails = Bank::create($bankdetails);
 
             $response['success'] = true;
@@ -199,8 +196,22 @@ class BrokerController extends Controller
             $brokersave['broker_type']       = $request->broker_type;
             $brokersave['is_lane_approved'] = $request->is_lane_approved;
             $brokersave['address']          = $request->address;
-            // $brokersave['pan_card']         = $request->pan_card;
-            // $brokersave['cancel_cheque']    = $request->cancel_cheque;
+            
+            // upload pan_card images
+            if($request->pan_card){
+                $file = $request->file('pan_card');
+                $path = 'public/images/pancard_images';
+                $name = Helper::uploadImage($file,$path); 
+                $brokersave['pan_card']  = $name;
+            }
+
+            // upload cancel_cheque images
+            if($request->cancel_cheque){   
+                $file = $request->file('cancel_cheque');
+                $path = 'public/images/cancelcheque_images';
+                $name = Helper::uploadImage($file,$path); 
+                $brokersave['cancel_cheque']  = $name;
+            }
             
             $savebroker = Broker::where('id',$request->broker_id)->update($brokersave);
             
@@ -244,4 +255,43 @@ class BrokerController extends Controller
         $response['error']           = false;
         return response()->json($response);
     }
+
+    // Delete pancard and cancel cheque image from edit view
+    public function deletebrokerImage(Request $request)
+    {
+        if($request->cancelchequeimg=="del-pancardimg") {
+            $path = 'public/images/pancard_images';
+            $image_path=Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().$path;   
+            $getimagename = Broker::where('id',$request["brokerimgid"])->first(); 
+
+            $image_path=$image_path.'/'.$getimagename->pan_card;
+            if (\File::exists($image_path)) {
+
+                unlink($image_path);
+            }
+            $deleteimage = Broker::where('id',$request->brokerimgid)->update(['pan_card'=>null]); 
+
+            $response['success']         = true;
+            $response['success_message'] = 'Pancard Image deleted successfully';
+            $response['error']           = false;
+            $response['delpan_card']     = "delpan_card";
+
+        } else {
+            $path = 'public/images/cancelcheque_images';
+            $image_path=Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().$path;      
+            $getimagename = Broker::where('id',$request["brokerimgid"])->first();
+
+            $image_path = $image_path.'/'.$getimagename->cancel_cheque;
+            if (\File::exists($image_path)) {
+                unlink($image_path);
+            }
+            $deleteimage = Broker::where('id',$request->brokerimgid)->update(['cancel_cheque'=>null]);
+
+            $response['success']         = true;
+            $response['success_message'] = 'Cancel cheque Image deleted successfully';
+            $response['error']           = false;
+        }
+      return response()->json($response);     
+    }
+
 }

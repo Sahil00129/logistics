@@ -7,7 +7,6 @@
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3"><h5>Update Broker</h5></div>
-                    
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -107,13 +106,52 @@
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 pancard-load">
                                         <label for="exampleFormControlInput2">Pan Card</label>
-                                        <input type="file" class="form-control" name="pan_card" value="{{old('pan_card',isset($getbroker->pan_card)?$getbroker->pan_card:'')}}" placeholder="">
+                                        
+                                        <?php if(!empty($getbroker->pan_card))
+                                        { 
+                                            ?> 
+                                            <input type="file" class="form-control panfile" name="pan_card" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("storage/images/pancard_images/$getbroker->pan_card")}}" class="panshow image-fluid" id="img-tag" width="320" height="240"></div>  
+                                        <?php }
+                                        else{
+                                            ?>  
+                                            <input type="file" class="form-control panfile" name="pan_card" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("/assets/img/upload-img.png")}}" class="panshow image-fluid" id="img-tag" width="320" height="240"></div>
+                                        <?php
+                                        }
+                                            ?>
+                                        <?php if($getbroker->pan_card!=null){ ?>
+                                           <a class="deletebrokerimg d-block text-center" href="javascript:void(0)" data-action = "<?php echo URL::to($prefix.'/brokers/update-broker'); ?>" data-cancelchequeimg = "del-pancardimg" data-id="{{ $getbroker->id }}" data-name="{{$getbroker->pan_card}}"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } else { ?>
+                                        <a href="javascript:void(0)" class="remove_panfield" style="display: none;"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } ?>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 cancelcheque-load">
                                         <label for="exampleFormControlInput2">Cancel Cheque</label>
-                                        <input type="file" class="form-control" name="cancel_cheque" value="{{old('cancel_cheque',isset($getbroker->cancel_cheque)?$getbroker->cancel_cheque:'')}}" placeholder="">
+                                        <?php if(!empty($getbroker->cancel_cheque))
+                                        { 
+                                            ?> 
+                                            <input type="file" class="form-control cancelfile" name="cancel_cheque" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("storage/images/cancelcheque_images/$getbroker->cancel_cheque")}}" class="cancelshow image-fluid" id="img-tag" width="320" height="240"></div>  
+                                        <?php }
+                                        else{
+                                            ?>  
+                                            <input type="file" class="form-control cancelfile" name="cancel_cheque" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("/assets/img/upload-img.png")}}" class="cancelshow image-fluid" id="img-tag" width="320" height="240"></div>
+                                        <?php
+                                        }
+                                            ?>
+                                        <?php if($getbroker->cancel_cheque!=null){ ?>
+                                           <a class="deletebrokerimg d-block text-center" href="javascript:void(0)" data-action = "<?php echo URL::to($prefix.'/brokers/update-broker'); ?>" data-cancelchequeimg = "del-cancelchequeimg" data-id="{{ $getbroker->id }}" data-name="{{$getbroker->cancel_cheque}}"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } else { ?>
+                                        <a href="javascript:void(0)" class="removecheque_field" style="display: none;"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
 
@@ -127,5 +165,57 @@
         </div>
     </div>
 </div>
+@include('models.deletebrokerimagepop')
+@endsection
+@section('js')
+<script>
+    $(document).on("click",".remove_panfield, .removecheque_field", function(e){ //user click on remove text
+    var getUrl = window.location;
+    var baseurl =  getUrl.origin + '/' +getUrl.pathname.split('/')[0];
+    var imgurl = baseurl+'assets/img/upload-img.png';
+      
+      $(this).parent().children(".image_upload").children().attr('src', imgurl);
+      $(this).parent().children("input").val('');;
+      // $(this).parent().children('div').children('h4').text('Add Image');
+      // $(this).parent().children('div').children('h4').css("display", "block");
+      $(this).css("display", "none");
+   });
 
+    function readURL1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('.panshow').attr('src', e.target.result);
+                $(".remove_panfield").css("display", "block");
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('.cancelshow').attr('src', e.target.result);
+                $(".removecheque_field").css("display", "block");
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).on("change",'.panfile', function(e){   
+        var fileName = this.files[0].name;
+        // $(this).parent().parent().find('.file_graph').text(fileName);
+
+        readURL1(this);
+       });
+    $(document).on("change",'.cancelfile', function(e){   
+        var fileName = this.files[0].name;
+        // $(this).parent().parent().find('.file_graph').text(fileName);
+
+        readURL2(this);
+       });
+</script>   
 @endsection

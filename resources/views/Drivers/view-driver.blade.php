@@ -7,6 +7,9 @@
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                     <div class="breadcrumb-title pe-3"><h5>Driver Details</h5></div>
+                    <div class="col-md-10 text-right">
+                        <a href="{{url($prefix.'drivers/'.Crypt::encrypt($getdriver->id).'/edit')}}" class="btn my-3" href="" style="background:#fff;" title="Edit Driver"><i class="fa fa-edit m-0"></i></a>
+                    </div>
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
