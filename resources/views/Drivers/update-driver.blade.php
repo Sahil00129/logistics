@@ -32,12 +32,32 @@
                                         <input type="text" class="form-control" name="license_number" value="{{old('license_number',isset($getdriver->license_number)?$getdriver->license_number:'')}}" placeholder="">
                                     </div>
                                 </div>
-                                <!-- <div class="form-row mb-0">
-                                    <div class="form-group col-md-6">
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6 license-load">
                                         <label for="exampleFormControlInput2">Driver License File(Optional)</label>
-                                        <input type="file" class="form-control" name="license_image" value="{{old('license_image',isset($getdriver->license_image)?$getdriver->license_image:'')}}" placeholder="">
+                                        
+                                        <?php if(!empty($getdriver->license_image))
+                                        { 
+                                            ?> 
+                                            <input type="file" class="form-control licensefile" name="license_image" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("storage/images/driverlicense_images/$getdriver->license_image")}}" class="licenseshow image-fluid" id="img-tag" width="320" height="240"></div>  
+                                        <?php }
+                                        else{
+                                            ?>  
+                                            <input type="file" class="form-control licensefile" name="license_image" value="" placeholder="">
+
+                                            <div class="image_upload"><img src="{{url("/assets/img/upload-img.png")}}" class="licenseshow image-fluid" id="img-tag" width="320" height="240"></div>
+                                        <?php
+                                        }
+                                            ?>
+                                        <?php if($getdriver->license_image!=null){ ?>
+                                           <a class="deletelicenseimg d-block text-center" href="javascript:void(0)" data-action = "<?php echo URL::to($prefix.'/drivers/update-license'); ?>" data-licenseimg = "del-licenseimg" data-id="{{ $getdriver->id }}" data-name="{{$getdriver->license_image}}"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } else { ?>
+                                        <a href="javascript:void(0)" class="remove_licensefield" style="display: none;"><i class="red-text fa fa-trash"></i> </a>
+                                        <?php } ?>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <input type="submit" class="mt-4 mb-4 btn btn-primary">
                                 <a class="btn btn-primary" href="{{ route('drivers.index') }}"> Back</a>
@@ -49,5 +69,40 @@
         </div>
     </div>
 </div>
+@include('models.deletedriverlicenseimagepop')
+@endsection
+@section('js')
+<script>
+    $(document).on("click",".remove_licensefield", function(e){ //user click on remove text
+    var getUrl = window.location;
+    var baseurl =  getUrl.origin + '/' +getUrl.pathname.split('/')[0];
+    var imgurl = baseurl+'assets/img/upload-img.png';
+      
+      $(this).parent().children(".image_upload").children().attr('src', imgurl);
+      $(this).parent().children("input").val('');;
+      // $(this).parent().children('div').children('h4').text('Add Image');
+      // $(this).parent().children('div').children('h4').css("display", "block");
+      $(this).css("display", "none");
+   });
 
+    function readURL1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('.licenseshow').attr('src', e.target.result);
+                $(".remove_licensefield").css("display", "block");
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).on("change",'.licensefile', function(e){
+        var fileName = this.files[0].name;
+        // $(this).parent().parent().find('.file_graph').text(fileName);
+
+        readURL1(this);
+    });
+
+</script>
 @endsection

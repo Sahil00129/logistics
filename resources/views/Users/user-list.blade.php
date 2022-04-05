@@ -17,7 +17,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="table-responsive mb-4 mt-4">
                         @csrf
                         <table id="usertable" class="table table-hover get-datatable" style="width:100%">
@@ -54,9 +53,9 @@
                                 }
                                 else {
                                     ?>
-                                        <tr>
-                                            <td colspan="7" class="text-center">No Record Found </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="7" class="text-center">No Record Found </td>
+                                    </tr>
                                 <?php 
                                     }
                                 ?>

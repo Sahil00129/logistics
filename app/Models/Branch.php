@@ -19,4 +19,8 @@ class Branch extends Model
     public function GetState(){
         return $this->hasOne('App\Models\State','id','state_id');
     }
+
+    public function images(){
+        return $this->hasMany('App\models\BranchImage','branch_id');
+    }
 }

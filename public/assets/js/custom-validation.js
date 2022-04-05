@@ -210,6 +210,174 @@ jQuery(document).ready(function(){
     });
     /*===== End delete Driver =====*/
 
+    // branch image add more    
+    $(".add_more_images").click(function(){
+       
+        var c = $('.images').length;
+        c  = c + 1;
+        var rows = '';
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+
+            rows+='<div class="images mt-3 col-md-2"><div class="row">';
+            rows+='<div class="col-md-2">';
+            // rows+='<span class="file bg-brown rounded btn-md">';
+            rows+='<input type="file" data-id="'+c+'" name="files[]" class="first"/>';
+            // rows+='<i class="fa fa-plus"></i> Add file</span>';
+            rows+='<p style="display:none;color:red" class="gif-errormsg'+c+'">Invalid image format</p>';
+            rows+='</div>';
+            // rows+='<div class="col-md-10 pl-0 imgsrc'+c+'">';
+            // // rows+='<span class="file_info">No files selected</span>';
+            // rows+='<div class="image_upload">';
+            // rows+='<img src="#" class="firstshow'+c+' image-fluid" style="display: none;">';
+            // rows+='</div><a href="javascript:void(0)" class="remove_field">';
+            // rows+='<i class="ml-2 red-text fa fa-trash"></div></div></div>';
+
+            // add new //
+            rows+='<a href="javascript:void(0)" class="btn-danger remove_field" style="margin: 5px 0 0 160px">';
+            rows+='<i class="ml-2 fa fa-trash"></a>';
+            rows+='</div></div>';  
+            // end add new //
+            
+            $('.branch-image').append(rows);
+
+        }
+        else{
+            $("#error-msg").css("display", "block");
+            // $(".add_more_images").css("display", "none");
+            $(".add_more_images").attr("disabled", true);
+        }
+        var html = $("#branch-upload").html();
+        $(".after-add-more").after(html);
+        $(".change").append("<label for=''>&nbsp;</label><br/><a class='btn btn-danger remove'>- Remove</a>");
+    });
+
+    $('input[type="file"]').change(function(event) {
+        var _size = this.files[0].size;
+        var exactSize = Math.round(_size/(1024*1024));
+        //console.log('FILE SIZE = ',exactSize);
+        if (exactSize >="5") {
+           $("#size-error").show();
+        }
+        else {
+           $("#size-error").hide();
+        }
+    });
+
+    // Delete branch Image from updatebranch view //
+    $(document).on('click', '.deletebranchimg', function () {
+        let id = $(this).attr('data-id');
+        $("#deletebranchimgpop").modal('show');
+        jQuery('.deletebranchimgdata').attr('data-id',id);
+    });
+
+    ///// Delete branch Image Method /////
+    $('body').on('click', '.deletebranchimgdata', function () {
+        let id  = jQuery(this).attr('data-id');
+        var url = jQuery(this).attr('data-action');
+
+        jQuery.ajax({
+            type     : "post",
+            data     : {branchimgid:id},
+            url      : url,
+            dataType : "JSON",
+            headers  : {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success : function (data) {
+                if(data){
+                    jQuery("#deletebranchimgpop").modal("hide");
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    // Delete driverlicense Image from updatedriver view //
+    $(document).on('click', '.deletelicenseimg', function () {
+        let id = $(this).attr('data-id');
+        let driverlicenseimg = $(this).attr('data-licenseimg');
+
+        $("#deletedriverlicenseimgpop").modal('show');
+        jQuery('.deletedriverlicenseimgdata').attr('data-id',id);
+        jQuery('.deletedriverlicenseimgdata').attr('data-driverlicenseimg',driverlicenseimg);
+    });
+
+    ///// Delete driverlicense Image Method /////
+
+    $('body').on('click', '.deletedriverlicenseimgdata', function () {
+        let id = jQuery(this).attr('data-id');
+        let driverlicenseimg = jQuery(this).attr('data-driverlicenseimg');
+        var url = jQuery(this).attr('data-action');
+
+        jQuery.ajax({
+            type     : "post",
+            data     : {licenseimgid:id,driverlicenseimg:driverlicenseimg},
+            url      : url,
+            dataType : "JSON",
+            headers  : {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success : function (data) {
+                if(data){
+                    jQuery(".license-load").load(".license-load");
+                    $(".deletelicenseimg").hide();
+                  
+                    jQuery("#deletedriverlicenseimgpop").modal("hide");
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    // Delete Broker pancard and cancelcheque Image from updatebroker view //
+    $(document).on('click', '.deletebrokerimg', function () {
+        let id = $(this).attr('data-id');
+        let cancelchequeimg = $(this).attr('data-cancelchequeimg');
+        let pancardimg = $(this).attr('data-pancardimg');
+
+        $("#deletebrokerimgpop").modal('show');
+        jQuery('.deletebrokerimgdata').attr('data-id',id);
+        jQuery('.deletebrokerimgdata').attr('data-pancardimg',pancardimg);
+        jQuery('.deletebrokerimgdata').attr('data-cancelchequeimg',cancelchequeimg);
+    });
+
+    ///// Delete Broker Image Method /////
+
+    $('body').on('click', '.deletebrokerimgdata', function () {
+        let id = jQuery(this).attr('data-id');
+        let cancelchequeimg = jQuery(this).attr('data-cancelchequeimg');
+        // let cancelchequeimg = jQuery(this).attr('data-cancelchequeimg');
+        var url = jQuery(this).attr('data-action');
+
+        jQuery.ajax({
+            type     : "post",
+            data     : {brokerimgid:id,cancelchequeimg:cancelchequeimg},
+            url      : url,
+            dataType : "JSON",
+            headers  : {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success : function (data) {
+                if(data){
+                    if(data.delpan_card == "delpan_card"){
+                        jQuery(".pancard-load").load(".pancard-load");
+                        $(".deletebrokerimg").hide();
+                    }
+                    else{
+                        jQuery(".cancelcheque-load").load(".cancelcheque-load");
+                        $(".deletebrokerimg").hide();
+                    }
+                    jQuery("#deletebrokerimgpop").modal("hide");
+                    location.reload();
+                }
+            }
+        });
+    });
+    
+
+
+
 
 });
 /*====== End document ready function =====*/ 

@@ -9,10 +9,12 @@ use App\Models\Consigner;
 use App\Models\Consignee;
 use App\Models\Broker;
 use App\Models\User;
+use App\Models\BranchImage;
 use DB;
 use URL;
 use Helper;
 use Validator;
+use Storage;
 use Auth;
 
 class BranchController extends Controller
@@ -64,11 +66,15 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+        try{
+            DB::beginTransaction();
+
         $this->prefix = request()->route()->getPrefix();
         $rules = array(
             'name' => 'required',
             // 'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'email' => 'required|unique:branches',
+            'files.*' => 'mimes:jpg,jpeg,png|max:4096',
         );
         $validator = Validator::make($request->all(),$rules);
     
@@ -97,15 +103,37 @@ class BranchController extends Controller
         $savebranch = Branch::create($branchsave); 
         if($savebranch)
         {
+            // upload branch images
+                if($request->hasfile('files')){
+                    $files = $request->file('files');
+                    foreach($files as $file){
+                        $path = 'public/images/branch';
+                        $name = Helper::uploadImage($file,$path);
+                        $data[] = [
+                            'name' =>  $name,
+                            'branch_id' => $savebranch->id
+                        ];
+                    }
+                    $savebranch->images()->insert($data);
+                }
+
             $response['success'] = true;
             $response['success_message'] = "Branch Added successfully";
             $response['error'] = false;
             $response['resetform'] = true;
             $response['page'] = 'create-branch'; 
-        }else{
+        }
+        else{
             $response['success'] = false;
             $response['error_message'] = "Can not created branch please try again";
             $response['error'] = true;
+        }
+        DB::commit();
+        }catch(Exception $e){
+            $response['error'] = false;
+            $response['error_message'] = $e;
+            $response['success'] = false;
+            $response['redirect_url'] = $url;
         }
         return response()->json($response);
     }
@@ -120,7 +148,7 @@ class BranchController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($branch);
-        $getbranch = Branch::where('id',$id)->with('GetState')->first();
+        $getbranch = Branch::where('id',$id)->with(['images','GetState'])->first();
         return view('Branch.view-branch',['prefix'=>$this->prefix,'title'=>$this->title,'getbranch'=>$getbranch]);
     }
 
@@ -135,7 +163,8 @@ class BranchController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($id);      
         $states = Helper::getStates();            
-        $getbranch = Branch::where('id',$id)->first();
+        $getbranch = Branch::where('id',$id)->with(['images'])->first();
+        // dd($getbranch);
         return view('Branch.update-branch')->with(['prefix'=>$this->prefix,'getbranch'=>$getbranch,'states'=>$states]);
     }
 
@@ -179,6 +208,21 @@ class BranchController extends Controller
             $branchsave['status']           = $request->status;
             
             Branch::where('id',$request->branch_id)->update($branchsave);
+
+            // upload branch images
+            if($request->hasfile('files')){
+                $files = $request->file('files');
+                foreach($files as $file){
+                    $path = 'public/images/branch';
+                    $name = Helper::uploadImage($file,$path);
+                    $data[] = [
+                        'name' =>  $name,
+                        'branch_id' => $request->branch_id
+                    ];
+                }
+                BranchImage::insert($data);
+            }
+
             $url    =   URL::to($this->prefix.'branches');
 
             $response['page'] = 'branch-update';
@@ -226,4 +270,26 @@ class BranchController extends Controller
         }
         return response()->json($response);
     }
+
+    // Delete branch image from edit view
+    public function deletebranchImage(Request $request)
+    {
+        $path = 'public/images/branch';
+        $image_path=Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix().$path;
+        $getimagename = BranchImage::where('id',$request->branchimgid)->first();
+        $image_path=$image_path.'/'.$getimagename->name;
+        if (\File::exists($image_path)) {
+
+            unlink($image_path);
+        }
+
+      $deleteimage = BranchImage::where('id',$request->branchimgid)->delete();
+
+      $response['success']         = true;
+      $response['success_message'] = 'Branch Image deleted successfully';
+      $response['error']           = false;
+
+      return response()->json($response);
+    }
+
 }

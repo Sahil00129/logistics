@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('branches', BranchController::class);
     Route::post('branches/update-branch', [BranchController::class, 'updateBranch']);
     Route::post('branches/delete-branch', [BranchController::class, 'deleteBranch']);
+    Route::post('branches/delete-branchimage', [BranchController::class, 'deletebranchImage']);
 
     Route::resource('consigners', ConsignerController::class);
     Route::post('consigners/update-consigner', [ConsignerController::class, 'updateConsigner']);
@@ -63,10 +64,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('brokers', BrokerController::class);
     Route::post('brokers/update-broker', [BrokerController::class, 'updateBroker']);
     Route::post('brokers/delete-broker', [BrokerController::class, 'deleteBroker']);
+    Route::post('/brokers/delete-brokerimage', [BrokerController::class, 'deletebrokerImage']);
 
     Route::resource('drivers', DriverController::class);
     Route::post('drivers/update-driver', [DriverController::class, 'updateDriver']);
     Route::post('drivers/delete-driver', [DriverController::class, 'deleteDriver']);
+    Route::post('/drivers/delete-licenseimage', [DriverController::class, 'deletelicenseImage']);
 
 });
 

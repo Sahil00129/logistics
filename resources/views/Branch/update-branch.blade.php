@@ -77,6 +77,48 @@
                                         <input type="text" class="form-control" name="consignment_note" value="{{old('consignment_note',isset($getbranch->consignment_note)?$getbranch->consignment_note:'')}}" placeholder="Pincode">
                                     </div>
                                 </div>
+                                <!-- branch image upload -->
+                                <div class="text-left upload-main mt-3">
+                                   <button type="button" class="add_more_images btn bg-brown pull-right"><span><i class="fa fa-plus"></i> Add more</span></button>
+                                   <span id="error-msg"  class="pull-right" style="display:none; color:red; ">Image not uplaod more than 5</span>
+                                   <span id="size-error" class="red-text" style="display: none;">Image size should be less than 5MB.</span>
+                                   <label class="d-block">Upload Branch Images</label>
+                                   <div class="branch-image">
+                                      @if(count($getbranch->images) < 5) 
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="images">
+                                                    <!-- <span class="file bg-brown rounded btn-md"> --> 
+                                                        <input type="file" name="files[]" data-id="1" class="first" accept="image/*"/>
+                                                        <!-- <i class="fa fa-plus"></i> Add file  
+                                                    </span> -->
+                                                    <p style="display:none;color:red" class="gif-errormsg1">Invalid image format</p>
+                                                </div>
+                                            @endif
+                                            </div>
+                                            <div class="col-md-10 pl-0">
+                                                <ul class="d-flex list-unstyled mb-0">
+                                                   @if(count($getbranch->images) == 5) 
+                                                    <span class="ml-2 file_info"></span>
+                                                   @else
+                                                   <!-- <span class="ml-2 file_info">No files selected</span> -->
+                                                   @endif
+                                                    <div class="image_upload">
+                                                        <img src="" class="firstshow1 image-fluid" onerror="this.style.display='none'">
+                                                    </div>
+                                                   
+                                                @foreach($getbranch->images as $image)    
+                                                             
+                                                    <li class="mr-3"><img src="{{ url("storage/images/branch").'/'.$image->name }}" class="img-fluid">
+                                                        <a class="deletebranchimg d-block text-center createleft_n" href="javascript:void(0)" data-action = "<?php echo URL::to($prefix.'branches/update-branch'); ?>" data-id="{{ $image->id }}" data-name="{{$image->name}}"><i class="red-text fa fa-trash"></i> </a>
+                                                    </li>
+                                                @endforeach 
+                                                </ul>
+                                            </div>  
+                                        </div>
+                                   </div>
+                                </div>
+                                <!-- End branch image upload -->
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Status</label>
@@ -107,4 +149,27 @@
     </div>
 </div>
 
+@include('models.deletebranchimagepop')
+@endsection
+@section('js')
+<script>
+    let max_fields =  4;
+    var x = "{{ count($getbranch->images) }}";
+
+    $(document).on("click",".remove_field", function(e){ //user click on remove text   
+        $(this).parent('div').remove(); 
+        // $(this).parent().parent().parent().remove();
+        x--;
+        // $(".add_more_images").css("display", "block");
+        $(".add_more_images").attr("disabled", false);
+        $("#error-msg").css("display", "none");
+   }); 
+
+    $(document).on("click",".deletebranchimg", function(e){ //user click on remove text   
+        $(this).parent('div').remove(); 
+        x--;
+        $(".add_more_images").attr("disabled", false);
+        $("#error-msg").css("display", "none");
+   });
+</script>
 @endsection

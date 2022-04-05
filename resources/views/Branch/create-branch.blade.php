@@ -6,8 +6,7 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3"><h5>Create new branch</h5></div>
-                    
+                    <div class="breadcrumb-title pe-3"><h5>Create Branch</h5></div>
                 </div>
                 <div class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -101,6 +100,34 @@
                                     </div>                             
                                 </div>
                             </div>
+                            <!-- Image upload -->
+                            <div class="text-left upload-main">
+                                <button type="button" class="btn bg-brown add_more_images pull-right themeBtns"><span><i class="fa fa-plus"></i> Add more</span></button>
+                                <span id="error-msg" class="pull-right" style="display:none; color:red;">Maximum upload image upto 5 </span> 
+                                <span id="size-error" class="red-text" style="display: none;">Image size should be less than 5MB.</span>
+                                <label class="d-block">Upload Branch Images</label>
+
+                                <div class="branch-image">
+                                    <div class="images">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <!-- <span class="file bg-brown rounded btn-md">   -->
+                                                   <input type="file" data-id="1" name="files[]" class="first" accept="image/*" />
+                                                   <!-- <i class="fa fa-plus"></i> Add file
+                                                </span> -->
+                                                <p style="display:none;color:red" class="gif-errormsg1">Image invalid format</p>
+                                            </div>
+                                            <!-- <div class="col-md-10 pl-0 imgsrc1">   
+                                                <span class="file_info">No files selected</span>
+                                                <div class="image_upload">
+                                               <img src="" class="firstshow1 image-fluid" onerror="this.style.display='none'">
+                                                </div>
+                                             </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- end image upload -->
                                 
                             <input type="submit" name="" class="mt-4 mb-4 btn btn-primary">
                             <a class="btn btn-primary" href="{{ route('branches.index') }}"> Back</a>
@@ -114,4 +141,21 @@
     </div>
 </div>
 
+@endsection
+@section('js')
+<script>        
+    let max_fields = 5;
+    var x = 1;
+
+    $(document).on("click",".remove_field", function(e){ //user click on remove text   
+        // $(this).parent('div').remove(); 
+        // $(this).parent().parent().parent().remove();
+        $(this).parent().remove();
+        x--;
+        // $(".add_more_images").css("display", "block");
+        $(".add_more_images").attr("disabled", false);
+        $("#error-msg").css("display", "none");
+    });
+
+</script>   
 @endsection
