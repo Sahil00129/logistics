@@ -1,5 +1,11 @@
 <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
-
+<?php
+    $url = URL::to('/');
+    $string = request()->route()->getPrefix();
+    $getprefix = str_replace('/', '', $string);
+    $segment   = Request::segment(1);
+    $prefixurl = $url.$getprefix.'/';
+    ?>
             <ul class="navbar-nav flex-row">
                 <li>
                     <div class="page-header">
@@ -11,6 +17,13 @@
                             </ol>
                         </nav>
 
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row ml-auto ">
+                <li class="nav-item more-dropdown">
+                    <div class="dropdown  custom-dropdown-icon">
+                        <a class="btn" href="{{$prefixurl.'payments'}}" role="button" id="payment"><span>Create Payments</span></a>
                     </div>
                 </li>
             </ul>

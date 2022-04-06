@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -33,8 +34,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('dashboard', App\Http\Controllers\DashboardController::class);
-    Route::resource('/', App\Http\Controllers\DashboardController::class);
+    Route::resource('/', DashboardController::class);
+    Route::resource('dashboard', DashboardController::class);
+    Route::get('payments', [DashboardController::class, 'createPayments']);
 
     Route::resource('users', UserController::class);
     Route::post('users/update-user', [UserController::class, 'updateUser']);
