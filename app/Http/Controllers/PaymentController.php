@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VehicleCapacity;
-use App\Models\Maplocation;
+use App\Models\MapLocation;
 use App\Models\PaymentHistory;
 use App\Models\StopHistory;
 use App\Models\Branch;
