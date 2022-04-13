@@ -355,10 +355,7 @@ $('#updateuser').validate({
             phone : {
                 Numbers: true,
                 minlength: 10,
-            },
-            dealer_type : {
-                required: true,
-            },            
+            },           
         },
         messages: {
             nick_name: {
@@ -371,9 +368,6 @@ $('#updateuser').validate({
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
-            },
-            dealer_type : {
-                required: "Select dealer type",
             },
         },
         submitHandler : function(form)
@@ -397,9 +391,6 @@ $('#updateuser').validate({
                 Numbers: true,
                 minlength: 10,
             },
-            dealer_type : {
-                required: true,
-            },
         },
         messages: {
             nick_name: {
@@ -412,9 +403,6 @@ $('#updateuser').validate({
             phone: {
                 Numbers: "Enter only numbers",
                 minlength: "Enter at least 10 digits",
-            },
-            dealer_type : {
-                required: "Select dealer type",
             },
         },
         submitHandler : function(form)
@@ -596,6 +584,44 @@ $('#updateuser').validate({
             formSubmitRedirect(form);
         }
     });
+
+    /*===== Create payment =====*/
+    $('#createpayment').validate({ 
+        rules: {
+            origin: {
+                required: true
+            },
+            destination: {
+                required: true,
+            },
+            purchase_price: {
+                number: true,
+            },
+            advance_payment: {
+                number: true,
+            },
+                
+        },
+        messages: {
+            origin: {
+                required: "Enter origin",
+            },
+            destination: {
+                required: "Enter destination",
+            },
+            purchase_price: {
+                number: "Enter numeric value only",
+            },
+            advance_payment: {
+                number: "Enter numeric value only",
+            },
+        },
+        submitHandler : function(form)
+        {
+            formSubmitRedirect(form);
+        }
+    });
+
 
 
 

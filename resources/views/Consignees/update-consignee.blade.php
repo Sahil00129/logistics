@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlSelect1">Consigner</label>
-                                        <select class="form-control" name="branch_id">
+                                        <select class="form-control" name="consigner_id">
                                             <option value="">Select</option>
                                             <?php 
                                             if(count($consigners)>0) {

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ConsigneeController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\BrokerController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +35,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('dashboard', App\Http\Controllers\DashboardController::class);
-    Route::resource('/', App\Http\Controllers\DashboardController::class);
+    Route::resource('/', DashboardController::class);
+    Route::resource('dashboard', DashboardController::class);
 
     Route::resource('users', UserController::class);
     Route::post('users/update-user', [UserController::class, 'updateUser']);
@@ -70,6 +72,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('drivers/update-driver', [DriverController::class, 'updateDriver']);
     Route::post('drivers/delete-driver', [DriverController::class, 'deleteDriver']);
     Route::post('/drivers/delete-licenseimage', [DriverController::class, 'deletelicenseImage']);
+
+    Route::resource('payments', PaymentController::class);
+    Route::post('/payments/get-assigned', [PaymentController::class,'getAssigned']);
+    Route::post('/payments/get-destination', [PaymentController::class,'get_destination']);
 
 });
 

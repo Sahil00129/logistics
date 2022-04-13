@@ -1,33 +1,19 @@
 jQuery(document).ready(function(){
 
-	/*======== check box checked  create/update user permission page  ========*/
+	/*======== check box checked create/update user permission page  ========*/
     jQuery(document).on('click','#ckbCheckAll',function(){
-        // var getsearchmodel = jQuery(this).attr('data-search');
-        // if(getsearchmodel == 'category'){
-        //     if(this.checked){
-        //         jQuery('#search-category .checkbox').each(function(){
-        //           this.checked = true;
-        //         });
-        //     }else{
-        //         jQuery('#search-category .checkbox').each(function(){
-        //           this.checked = false;
-        //         });
-        //     }
-        // } 
-        // else{
-            if(this.checked){
-                jQuery('#dropdownMenuButton').prop('disabled', false);
-                jQuery('.chkBoxClass').each(function(){
-                    this.checked = true;
-                });
-            }
-            else{
-                jQuery('.chkBoxClass').each(function(){
-                    this.checked = false;
-                });
-                jQuery('#dropdownMenuButton').prop('disabled', true);
-            }
-        // }
+        if(this.checked){
+            jQuery('#dropdownMenuButton').prop('disabled', false);
+            jQuery('.chkBoxClass').each(function(){
+                this.checked = true;
+            });
+        }
+        else{
+            jQuery('.chkBoxClass').each(function(){
+                this.checked = false;
+            });
+            jQuery('#dropdownMenuButton').prop('disabled', true);
+        }
     });
 
     jQuery(document).on('click','.chkBoxClass',function(){
@@ -221,23 +207,12 @@ jQuery(document).ready(function(){
 
             rows+='<div class="images mt-3 col-md-2"><div class="row">';
             rows+='<div class="col-md-2">';
-            // rows+='<span class="file bg-brown rounded btn-md">';
             rows+='<input type="file" data-id="'+c+'" name="files[]" class="first"/>';
-            // rows+='<i class="fa fa-plus"></i> Add file</span>';
             rows+='<p style="display:none;color:red" class="gif-errormsg'+c+'">Invalid image format</p>';
             rows+='</div>';
-            // rows+='<div class="col-md-10 pl-0 imgsrc'+c+'">';
-            // // rows+='<span class="file_info">No files selected</span>';
-            // rows+='<div class="image_upload">';
-            // rows+='<img src="#" class="firstshow'+c+' image-fluid" style="display: none;">';
-            // rows+='</div><a href="javascript:void(0)" class="remove_field">';
-            // rows+='<i class="ml-2 red-text fa fa-trash"></div></div></div>';
-
-            // add new //
             rows+='<a href="javascript:void(0)" class="btn-danger remove_field" style="margin: 5px 0 0 160px">';
             rows+='<i class="ml-2 fa fa-trash"></a>';
-            rows+='</div></div>';  
-            // end add new //
+            rows+='</div></div>'; 
             
             $('.branch-image').append(rows);
 
@@ -374,8 +349,42 @@ jQuery(document).ready(function(){
             }
         });
     });
-    
 
+    // create payment page get pending payment
+    $(".purchase_price, .advance_payment").keyup(function(){
+        var purprice = $('.purchase_price').val();
+        var advprice = $('.advance_payment').val();
+        var pending  = purprice-advprice;
+        $('.pending_payment').val(pending);
+    });
+
+    $(".purchase_price").keyup(function(){
+        pur = $(this).val();
+        if(pur>0){
+            $('.advance_payment').attr("disabled", false);
+        }else{
+            $('.advance_payment').val('');
+            $('.advance_payment').attr("disabled", true);
+        }
+    });
+
+    $(".advance_payment").keyup(function(){
+        adv =$(this).val();
+        pend = $('.pending_payment').val();
+        if ((parseInt(adv) > parseInt(pur))||(parseInt(pend)<0)) {
+            $('.advance_payment').val('');
+        }
+    });    
+    // end create payment page get pending payment
+
+    
+    // jQuery('.releaseinputforinternal').donetyping(function(callback){
+    //     var inputval = jQuery(this).val();
+    //     var availcases = jQuery('.availcases').val();
+    //     if(parseInt(inputval) > parseInt(availcases)){
+    //         jQuery(this).val(availcases);
+    //     }
+    // });
 
 
 

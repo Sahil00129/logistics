@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\VehicleType;
+use App\Models\VehicleCapacity;
 
-class VehicleTypeSeeder extends Seeder
+class VehicleCapacitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,169 +16,169 @@ class VehicleTypeSeeder extends Seeder
     {
         $input = [
             [
-                'type' => '1T',
+                'name' => '1MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '2T',
+                'name' => '2MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '3T',
+                'name' => '3MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '4T',
+                'name' => '4MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '5T',
+                'name' => '5MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '6T',
+                'name' => '6MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '7T',
+                'name' => '7MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '8T',
+                'name' => '8MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '9T',
+                'name' => '9MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '10T',
+                'name' => '10MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '11T',
+                'name' => '11MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '12T',
+                'name' => '12MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '13T',
+                'name' => '13MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '14T',
+                'name' => '14MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '15T',
+                'name' => '15MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '16T',
+                'name' => '16MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '17T',
+                'name' => '17MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '18T',
+                'name' => '18MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '19T',
+                'name' => '19MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '20T',
+                'name' => '20MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '21T',
+                'name' => '21MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '22T',
+                'name' => '22MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '23T',
+                'name' => '23MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '24T',
+                'name' => '24MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '25T',
+                'name' => '25MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '26T',
+                'name' => '26MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '27T',
+                'name' => '27MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '28T',
+                'name' => '28MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '29T',
+                'name' => '29MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '30T',
+                'name' => '30MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '31T',
+                'name' => '31MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             [
-                'type' => '32T',
+                'name' => '32MT',
                 'status' => 1,
                 'created_at' => time()
             ],
             
         ];
         foreach ($input as $val) {
-            VehicleType::firstOrCreate($val);
+            VehicleCapacity::firstOrCreate($val);
         }
     }
 }

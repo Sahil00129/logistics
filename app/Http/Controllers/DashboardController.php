@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $this->prefix = request()->route()->getPrefix();
 
         return view('dashboard',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment]);
-    }
+    }    
 
     public function ForbiddenPage(Request $request)
     {
