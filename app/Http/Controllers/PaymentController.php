@@ -49,15 +49,8 @@ class PaymentController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
 
-        $response = \GoogleMaps::load('geocoding')
-            ->setParam ([
-                'address'    =>'Delhi',
-                'components' => ['country'=> 'IN',]
-            ])
-            ->get();
-
         $vehicle_capacity = VehicleCapacity::get();
-        return view('Payments.create-payment',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'vehicle_capacity'=>$vehicle_capacity,'response'=>$response]);        
+        return view('Payments.create-payment',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'vehicle_capacity'=>$vehicle_capacity]);        
     }
 
     /**
