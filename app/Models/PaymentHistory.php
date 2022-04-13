@@ -13,6 +13,6 @@ class PaymentHistory extends Model
     ];
     
     public function stops(){
-        return $this->hasMany('App\models\StopHistory','payment_id');
+        return $this->hasMany('App\Models\StopHistory','payment_id');
     }
 }
