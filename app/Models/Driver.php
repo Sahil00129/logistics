@@ -11,4 +11,9 @@ class Driver extends Model
     protected $fillable = [
         'name', 'email', 'phone', 'license_number', 'license_image', 'status','created_at','updated_at'        
     ];
+
+    public function BankDetail()
+    {
+        return $this->hasOne('App\Models\Bank','broker_id','id');
+    }
 }

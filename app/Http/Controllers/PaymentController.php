@@ -9,6 +9,8 @@ use App\Models\PaymentHistory;
 use App\Models\StopHistory;
 use App\Models\Branch;
 use App\Models\User;
+use App\Models\Broker;
+use App\Models\Driver;
 use GoogleMaps;
 use Validator;
 use Auth;
@@ -36,7 +38,6 @@ class PaymentController extends Controller
         $peritem = 20;
         $query = Maplocation::query();
         $payments = $query->orderBy('id','DESC')->with('PaymentHistory')->paginate($peritem);
-        // dd($payments);
         return view('Payments.payment-list',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'payments'=>$payments])->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
@@ -50,7 +51,9 @@ class PaymentController extends Controller
         $this->prefix = request()->route()->getPrefix();
 
         $vehicle_capacity = VehicleCapacity::get();
-        return view('Payments.create-payment',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'vehicle_capacity'=>$vehicle_capacity]);        
+        $brokers = Broker::where('status',1)->orderby('name','ASC')->pluck('name','id');
+        $drivers = Driver::where('status',1)->orderby('name','ASC')->pluck('name','id');
+        return view('Payments.create-payment',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'vehicle_capacity'=>$vehicle_capacity,'brokers'=>$brokers,'drivers'=>$drivers]);        
     }
 
     /**
@@ -101,6 +104,8 @@ class PaymentController extends Controller
             $paymentdetails['vehcapacity_id'] = $request->vehcapacity_id;
             $paymentdetails['payment_type']   = $request->payment_type;
             $paymentdetails['payment_to']     = $request->payment_to;
+            $paymentdetails['paytobroker_id'] = $request->paytobroker_id;
+            $paymentdetails['paytodriver_id'] = $request->paytodriver_id;
             $paymentdetails['purchase_price'] = $request->purchase_price;
             $paymentdetails['advance_payment']= $request->advance_payment;
             $paymentdetails['pending_payment']= $request->pending_payment;

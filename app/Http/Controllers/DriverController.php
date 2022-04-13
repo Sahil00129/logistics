@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Driver;
+use App\Models\Bank;
 use DB;
 use URL;
 use Helper;
@@ -85,16 +86,26 @@ class DriverController extends Controller
         $savedriver = Driver::create($driversave); 
         if($savedriver)
         {
+            $bankdetails['broker_id']          = $savedriver->id;
+            $bankdetails['bank_name']          = $request->bank_name;
+            $bankdetails['branch_name']        = $request->branch_name;
+            $bankdetails['ifsc']               = $request->ifsc;
+            $bankdetails['account_number']     = $request->account_number;
+            $bankdetails['account_holdername'] = $request->account_holdername;
+            $bankdetails['status']             = "1";
+            
+            $savebankdetails = Bank::create($bankdetails);
 
-            $response['success'] = true;
+
+            $response['success']         = true;
             $response['success_message'] = "Driver Added successfully";
-            $response['error'] = false;
-            $response['resetform'] = true;
-            $response['page'] = 'create-driver'; 
+            $response['error']           = false;
+            $response['resetform']       = true;
+            $response['page']            = 'create-driver'; 
         }else{
-            $response['success'] = false;
-            $response['error_message'] = "Can not created driver please try again";
-            $response['error'] = true;
+            $response['success']         = false;
+            $response['error_message']   = "Can not created driver please try again";
+            $response['error']           = true;
         }
         return response()->json($response);
     }
@@ -109,7 +120,9 @@ class DriverController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($driver);
-        $getdriver = Driver::where('id',$id)->first();
+        $getdriver = Driver::where('id',$id)->with(['BankDetail'=> function($query){
+            $query->where('status',1);
+        }])->first();
         return view('Drivers.view-driver',['prefix'=>$this->prefix,'title'=>$this->title,'getdriver'=>$getdriver]);
     }
 
@@ -123,7 +136,9 @@ class DriverController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($id);            
-        $getdriver = Driver::where('id',$id)->first();
+        $getdriver = Driver::where('id',$id)->with(['BankDetail'=> function($query){
+            $query->where('status',1);
+        }])->first();
         return view('Drivers.update-driver')->with(['prefix'=>$this->prefix,'getdriver'=>$getdriver]);
     }
 
@@ -167,13 +182,25 @@ class DriverController extends Controller
            }
             
             $savedriver = Driver::where('id',$request->driver_id)->update($driversave);
-            $url    =   URL::to($this->prefix.'drivers');
 
-            $response['page']            = 'driver-update';
-            $response['success']         = true;
-            $response['success_message'] = "Driver Updated Successfully";
-            $response['error']           = false;
-            $response['redirect_url']    = $url;
+            if($savedriver)
+            {
+                $bankdetails['bank_name']          = $request->bank_name;
+                $bankdetails['branch_name']        = $request->branch_name;
+                $bankdetails['ifsc']               = $request->ifsc;
+                $bankdetails['account_number']     = $request->account_number;
+                $bankdetails['account_holdername'] = $request->account_holdername;
+                $bankdetails['status']             = "1";
+            
+                $savebankdetails = Bank::where('broker_id',$request->driver_id)->update($bankdetails);
+                $url    =   URL::to($this->prefix.'drivers');
+
+                $response['redirect_url']    = $url;
+                $response['success']         = true;
+                $response['success_message'] = "Driver Updated Successfully";
+                $response['error']           = false;
+                $response['page']            = 'driver-update';
+            }
         }catch(Exception $e) {
             $response['error']         = false;
             $response['error_message'] = $e;
