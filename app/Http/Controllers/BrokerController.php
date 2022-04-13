@@ -113,6 +113,7 @@ class BrokerController extends Controller
             $bankdetails['ifsc']               = $request->ifsc;
             $bankdetails['account_number']     = $request->account_number;
             $bankdetails['account_holdername'] = $request->account_holdername;
+            $bankdetails['status']             = "0";
             
             $savebankdetails = Bank::create($bankdetails);
 
@@ -139,7 +140,11 @@ class BrokerController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($broker);
-        $getbroker = Broker::where('id',$id)->with('Broker','GetBranch')->first();
+        // $getbroker = Broker::where('id',$id)->with('BankDetail','GetBranch')->first();
+        $getbroker = Broker::where('id',$id)->with('GetBranch')->with(['BankDetail'=> function($query){
+            $query->where('status',0);
+        }])->first();
+
         return view('Brokers.view-broker',['prefix'=>$this->prefix,'title'=>$this->title,'getbroker'=>$getbroker]);
     }
 
@@ -154,7 +159,10 @@ class BrokerController extends Controller
         $this->prefix = request()->route()->getPrefix();
         $id = decrypt($id);      
         $branches = Helper::getBranches();            
-        $getbroker = Broker::where('id',$id)->with('Broker')->first();
+        // $getbroker = Broker::where('id',$id)->with('BankDetail')->first();
+        $getbroker = Broker::where('id',$id)->with(['BankDetail'=> function($query){
+            $query->where('status',0);
+        }])->first();
         return view('Brokers.update-broker')->with(['prefix'=>$this->prefix,'getbroker'=>$getbroker,'branches'=>$branches]);
     }
 
@@ -214,23 +222,25 @@ class BrokerController extends Controller
             }
             
             $savebroker = Broker::where('id',$request->broker_id)->update($brokersave);
-            
-            $bankdetails['bank_name']          = $request->bank_name;
-            $bankdetails['branch_name']        = $request->branch_name;
-            $bankdetails['ifsc']               = $request->ifsc;
-            $bankdetails['account_number']     = $request->account_number;
-            $bankdetails['account_holdername'] = $request->account_holdername;
-            
-            $savebankdetails = Bank::updateOrCreate(['broker_id'=>$request->broker_id],$bankdetails);
+            if($savebroker)
+            {
+                $bankdetails['bank_name']          = $request->bank_name;
+                $bankdetails['branch_name']        = $request->branch_name;
+                $bankdetails['ifsc']               = $request->ifsc;
+                $bankdetails['account_number']     = $request->account_number;
+                $bankdetails['account_holdername'] = $request->account_holdername;
+                $bankdetails['status']             = "0";
+                
+                $savebankdetails = Bank::updateOrCreate(['broker_id'=>$request->broker_id],$bankdetails);
 
-            $url    =   URL::to($this->prefix.'brokers');
+                $url    =   URL::to($this->prefix.'brokers');
 
-            $response['page'] = 'broker-update';
-            $response['success'] = true;
-            $response['success_message'] = "Broker Updated Successfully";
-            $response['error'] = false;
-            // $response['html'] = $html;
-            $response['redirect_url'] = $url;
+                $response['page'] = 'broker-update';
+                $response['success'] = true;
+                $response['success_message'] = "Broker Updated Successfully";
+                $response['error'] = false;
+                $response['redirect_url'] = $url;
+            }
         }catch(Exception $e) {
             $response['error'] = false;
             $response['error_message'] = $e;

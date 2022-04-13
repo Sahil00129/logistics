@@ -21,7 +21,7 @@ class CreateBanksTable extends Migration
             $table->string('ifsc')->nullable();
             $table->string('account_number')->nullable();
             $table->string('account_holdername')->nullable();
-            $table->tinyinteger('status')->nullable();
+            $table->tinyinteger('status')->nullable()->comment('0=>broker 1=>driver');
             $table->timestamps();
         });
     }

@@ -82,27 +82,27 @@
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Bank Name</label>
-                                        <input type="text" class="form-control" name="bank_name" value="{{old('bank_name',isset($getbroker->Broker->bank_name)?$getbroker->Broker->bank_name:'')}}" placeholder="">
+                                        <input type="text" class="form-control" name="bank_name" value="{{old('bank_name',isset($getbroker->BankDetail->bank_name)?$getbroker->BankDetail->bank_name:'')}}" placeholder="">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Branch Name</label>
-                                        <input type="text" class="form-control" name="branch_name" value="{{old('branch_name',isset($getbroker->Broker->branch_name)?$getbroker->Broker->branch_name:'')}}" placeholder="">
+                                        <input type="text" class="form-control" name="branch_name" value="{{old('branch_name',isset($getbroker->BankDetail->branch_name)?$getbroker->BankDetail->branch_name:'')}}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">IFSC</label>
-                                        <input type="text" class="form-control" name="ifsc" value="{{old('ifsc',isset($getbroker->Broker->ifsc)?$getbroker->Broker->ifsc:'')}}" placeholder="">
+                                        <input type="text" class="form-control" name="ifsc" value="{{old('ifsc',isset($getbroker->BankDetail->ifsc)?$getbroker->BankDetail->ifsc:'')}}" placeholder="">
                                     </div> 
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Account No</label>
-                                        <input type="text" class="form-control" name="account_number" value="{{old('account_number',isset($getbroker->Broker->account_number)?$getbroker->Broker->account_number:'')}}" placeholder="">
+                                        <input type="text" class="form-control" name="account_number" value="{{old('account_number',isset($getbroker->BankDetail->account_number)?$getbroker->BankDetail->account_number:'')}}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Account Holder Name</label>
-                                        <input type="text" class="form-control" name="account_holdername" value="{{old('account_holdername',isset($getbroker->Broker->account_holdername)?$getbroker->Broker->account_holdername:'')}}" placeholder="">
+                                        <input type="text" class="form-control" name="account_holdername" value="{{old('account_holdername',isset($getbroker->BankDetail->account_holdername)?$getbroker->BankDetail->account_holdername:'')}}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-row mb-0">

@@ -48,10 +48,42 @@
                             <div class="mb-2 card-header addtrnplist" id="addtrnp" style="width: 100%;"><h6><i class="fadeIn animated bx bx-car"></i>Add Transporter + </h6></div>
                             <div class="col-md-12 mb-2 trnplist">
                                 <label for="exampleFormControlSelect1">Payment To</label>
-                                <select class="form-control" name="payment_to">
+                                <select class="form-control" id="payment-to" name="payment_to">
                                     <option value="">Select</option>
                                     <option value="1">Broker/Owner</option>
                                     <option value="2">Driver</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-2 brokerlist" style="display:none">
+                                <label for="exampleFormControlSelect1">Select Broker</label>
+                                <select class="form-control" name="paytobroker_id">
+                                    <option value="">Select</option>
+                                    <?php 
+                                    if(count($brokers)>0) {
+                                        foreach ($brokers as $key => $broker)
+                                        {
+                                    ?>
+                                        <option value="{{ $key }}">{{ucwords($broker)}}</option>
+                                      <?php 
+                                        }
+                                    }
+                                    ?>                            
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-2 driverlist" style="display:none">
+                                <label for="exampleFormControlSelect1">Select Driver</label>
+                                <select class="form-control" name="paytodriver_id">
+                                    <option value="">Select</option>
+                                    <?php 
+                                    if(count($drivers)>0) {
+                                        foreach ($drivers as $key => $driver)
+                                        {
+                                    ?>
+                                        <option value="{{ $key }}">{{ucwords($driver)}}</option>
+                                      <?php 
+                                        }
+                                    }
+                                    ?>                            
                                 </select>
                             </div>
                             <div class="col-md-12 mb-2 trnplist">
@@ -126,6 +158,21 @@
 @endsection
 @section('js')
 <script>
+    jQuery('#payment-to').on('change', function() {
+        paymentto = $(this).val();
+        if(paymentto =="1"){
+            $(".brokerlist").css("display","block");
+            $(".driverlist").css("display","none");
+        }else if(paymentto =="2"){
+            $(".driverlist").css("display","block");
+            $(".brokerlist").css("display","none");
+        }else{
+            $(".brokerlist").css("display","none");
+            $(".driverlist").css("display","none");
+        }
+    });
+
+    // append rows on num stops
     jQuery("#numstops").keyup(function(){
         $(".stopstable").css("display","block");
         max_fields = $(this).val();

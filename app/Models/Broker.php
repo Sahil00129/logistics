@@ -12,7 +12,7 @@ class Broker extends Model
         'branch_id', 'name', 'email', 'phone', 'gst_number', 'pan_number', 'broker_type', 'is_lane_approved', 'address', 'pan_card', 'cancel_cheque', 'status','created_at','updated_at'        
     ];
 
-    public function Broker()
+    public function BankDetail()
     {
         return $this->hasOne('App\Models\Bank','broker_id','id');
     }

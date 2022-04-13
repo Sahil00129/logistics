@@ -58,6 +58,33 @@
                                         <?php } ?>
                                     </div>
                                 </div>
+                                <h4>Bank Details</h4>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Bank Name</label>
+                                        <input type="text" class="form-control" name="bank_name" value="{{old('bank_name',isset($getdriver->BankDetail->bank_name)?$getdriver->BankDetail->bank_name:'')}}" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Branch Name</label>
+                                        <input type="text" class="form-control" name="branch_name" value="{{old('branch_name',isset($getdriver->BankDetail->branch_name)?$getdriver->BankDetail->branch_name:'')}}" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">IFSC</label>
+                                        <input type="text" class="form-control" name="ifsc" value="{{old('ifsc',isset($getdriver->BankDetail->ifsc)?$getdriver->BankDetail->ifsc:'')}}" placeholder="">
+                                    </div> 
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Account No</label>
+                                        <input type="text" class="form-control" name="account_number" value="{{old('account_number',isset($getdriver->BankDetail->account_number)?$getdriver->BankDetail->account_number:'')}}" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Account Holder Name</label>
+                                        <input type="text" class="form-control" name="account_holdername" value="{{old('account_holdername',isset($getdriver->BankDetail->account_holdername)?$getdriver->BankDetail->account_holdername:'')}}" placeholder="">
+                                    </div>
+                                </div>
 
                                 <input type="submit" class="mt-4 mb-4 btn btn-primary">
                                 <a class="btn btn-primary" href="{{ route('drivers.index') }}"> Back</a>

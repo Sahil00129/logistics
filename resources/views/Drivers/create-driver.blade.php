@@ -35,7 +35,34 @@
                                     <div class="form-group col-md-6">
                                         <label for="exampleFormControlInput2">Driver License File(Optional)</label>
                                         <input type="file" class="form-control license_image" name="license_image" accept="image/*">
-                                    </div>                                    
+                                    </div>     
+                                </div>
+                                <h5 class="form-row mb-2">Bank Details</h5>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Bank Name</label>
+                                        <input type="text" class="form-control" name="bank_name" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Branch Name</label>
+                                        <input type="text" class="form-control" name="branch_name" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">IFSC</label>
+                                        <input type="text" class="form-control" name="ifsc" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Account No</label>
+                                        <input type="text" class="form-control" name="account_number" placeholder="">
+                                    </div>                                
+                                </div>
+                                <div class="form-row mb-0">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleFormControlInput2">Account Holder Name</label>
+                                        <input type="text" class="form-control" name="account_holdername" placeholder="">
+                                    </div>
                                 </div>
                                     
                                 <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary">

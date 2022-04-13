@@ -71,23 +71,23 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Bank Name</th>
-                                        <td>{{isset($getbroker->Broker->bank_name)?ucfirst($getbroker->Broker->bank_name):'-'}}</td>
+                                        <td>{{isset($getbroker->BankDetail->bank_name)?ucfirst($getbroker->BankDetail->bank_name):'-'}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Branch Name</th>
-                                        <td>{{isset($getbroker->Broker->branch_name) ? ucfirst($getbroker->Broker->branch_name):'-'}} </td>
+                                        <td>{{isset($getbroker->BankDetail->branch_name) ? ucfirst($getbroker->BankDetail->branch_name):'-'}} </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">IFSC</th>
-                                        <td>{{isset($getbroker->Broker->ifsc) ? $getbroker->Broker->ifsc:'-'}} </td>
+                                        <td>{{isset($getbroker->BankDetail->ifsc) ? $getbroker->BankDetail->ifsc:'-'}} </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Account No</th>
-                                        <td>{{isset($getbroker->Broker->account_number) ? $getbroker->Broker->account_number:'-'}}</td>
+                                        <td>{{isset($getbroker->BankDetail->account_number) ? $getbroker->BankDetail->account_number:'-'}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Account Holder Name</th>
-                                        <td>{{isset($getbroker->Broker->account_holdername) ? ucfirst($getbroker->Broker->account_holdername) : "-" }}</td>
+                                        <td>{{isset($getbroker->BankDetail->account_holdername) ? ucfirst($getbroker->BankDetail->account_holdername) : "-" }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Pan Card</th>
