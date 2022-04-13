@@ -23,7 +23,7 @@
             <ul class="navbar-nav flex-row ml-auto ">
                 <li class="nav-item more-dropdown">
                     <div class="dropdown  custom-dropdown-icon">
-                        <a class="btn" href="{{$prefixurl.'payments'}}" role="button" id="payment"><span>Create Payments</span></a>
+                        <a class="btn" href="{{$prefixurl.'payments/create'}}" role="button" id="payment"><span>Create Payment</span></a>
                     </div>
                 </li>
             </ul>

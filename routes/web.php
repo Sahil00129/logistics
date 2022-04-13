@@ -13,6 +13,7 @@ use App\Http\Controllers\ConsigneeController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\BrokerController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('/', DashboardController::class);
     Route::resource('dashboard', DashboardController::class);
-    Route::get('payments', [DashboardController::class, 'createPayments']);
 
     Route::resource('users', UserController::class);
     Route::post('users/update-user', [UserController::class, 'updateUser']);
@@ -72,6 +72,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('drivers/update-driver', [DriverController::class, 'updateDriver']);
     Route::post('drivers/delete-driver', [DriverController::class, 'deleteDriver']);
     Route::post('/drivers/delete-licenseimage', [DriverController::class, 'deletelicenseImage']);
+
+    Route::resource('payments', PaymentController::class);
+    Route::post('/payments/get-assigned', [PaymentController::class,'getAssigned']);
+    Route::post('/payments/get-destination', [PaymentController::class,'get_destination']);
 
 });
 

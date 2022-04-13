@@ -19,7 +19,7 @@ class CreateConsigneesTable extends Migration
             $table->string('legal_name')->nullable();
             $table->string('branch_id')->nullable();
             $table->string('consigner_id')->nullable();
-            $table->tinyinteger('dealer_type')->default(1)->comment('0=>not register 1=>register');
+            $table->string('dealer_type')->nullable()->comment('0=>not register 1=>register');
             $table->string('gst_number')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('phone')->nullable();
