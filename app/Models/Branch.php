@@ -21,6 +21,6 @@ class Branch extends Model
     }
 
     public function images(){
-        return $this->hasMany('App\models\BranchImage','branch_id');
+        return $this->hasMany('App\Models\BranchImage','branch_id');
     }
 }
