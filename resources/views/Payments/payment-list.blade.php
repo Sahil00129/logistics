@@ -16,7 +16,6 @@
                         </div>
                     </div>
                 </div>
-                <p class="branch_error" style="display: none; color: red;">This Branch cannot be deleted because it's already in use.</p>
                 <div class="table-responsive mb-4 mt-4">
                     @csrf
                     <table id="branchtable" class="table table-hover get-datatable" style="width:100%">
@@ -25,8 +24,7 @@
                                 <th>Sr No.</th>
                                 <th>From City</th>
                                 <th>Destination City</th>
-                                <!-- <th>Purchase Price</th>
-                                <th>Consignment note</th> -->
+                                <th>Action</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +36,12 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ ucfirst($value->origin) }}</td>
                                 <td>{{ $value->destination }}</td>
-                                
+                                <td>
+                                    <!-- <a class="btn btn-primary" href="{{url($prefix.'payments/'.Crypt::encrypt($value->id).'/edit')}}" >
+                                        <span><i class="fa fa-edit"></i></span>
+                                    </a> -->
+                                    <a class="btn btn-primary" href="{{url($prefix.'payments/'.Crypt::encrypt($value->id))}}" >View</a>
+                                </td>
                             </tr>
                             <?php 
                                 }

@@ -15,7 +15,7 @@ class CreateStopHistoriesTable extends Migration
     {
         Schema::create('stop_histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('payment_id')->nullable();
+            $table->string('maplocation_id')->nullable();
             $table->string('lr_number')->nullable();
             $table->date('lr_date')->nullable();
             $table->string('gross_wt')->nullable();

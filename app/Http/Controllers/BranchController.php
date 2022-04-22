@@ -179,7 +179,7 @@ class BranchController extends Controller
     {
         try { 
             $this->prefix = request()->route()->getPrefix();
-             $rules = array(
+            $rules = array(
               'name' => 'required',
               'email'  => 'required',
             );
