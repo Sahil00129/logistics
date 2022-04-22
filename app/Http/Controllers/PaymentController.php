@@ -36,7 +36,7 @@ class PaymentController extends Controller
     {
         $this->prefix = request()->route()->getPrefix();
         $peritem = 20;
-        $query = Maplocation::query();
+        $query = MapLocation::query();
         $payments = $query->orderBy('id','DESC')->with('PaymentHistory')->paginate($peritem);
         return view('Payments.payment-list',['prefix'=>$this->prefix,'title'=>$this->title,'segment'=>$this->segment,'payments'=>$payments])->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -64,7 +64,6 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     { 
-        // dd($request->toArray());
         try{
             DB::beginTransaction();
 
@@ -95,29 +94,30 @@ class PaymentController extends Controller
         if(!empty($request->number_stops)){
             $locationsave['number_stops']  = $request->number_stops;
         }
+        $locationsave['vehcapacity_id'] = $request->vehcapacity_id;
+        $locationsave['payment_type']   = $request->payment_type;
+        $locationsave['payment_to']     = $request->payment_to;
+        $locationsave['paytobroker_id'] = $request->paytobroker_id;
+        $locationsave['paytodriver_id'] = $request->paytodriver_id;
+        $locationsave['purchase_price'] = $request->purchase_price;
 
         $savelocation = Maplocation::create($locationsave);
 
         if($savelocation)
         {
             $paymentdetails['maplocation_id'] = $savelocation->id;
-            $paymentdetails['vehcapacity_id'] = $request->vehcapacity_id;
-            $paymentdetails['payment_type']   = $request->payment_type;
-            $paymentdetails['payment_to']     = $request->payment_to;
-            $paymentdetails['paytobroker_id'] = $request->paytobroker_id;
-            $paymentdetails['paytodriver_id'] = $request->paytodriver_id;
-            $paymentdetails['purchase_price'] = $request->purchase_price;
             $paymentdetails['advance_payment']= $request->advance_payment;
             $paymentdetails['pending_payment']= $request->pending_payment;
+            $paymentdetails['payment_date']   = $request->payment_date;
 
             $savepayments = PaymentHistory::create($paymentdetails);
             if(!empty($request['lr_number'])){
                 foreach($request['lr_number'] as $key => $lrnum) 
                 {
-                    $data[$key]['payment_id'] = $savepayments->id;
+                    $data[$key]['maplocation_id'] = $savelocation->id;
                     $data[$key]['lr_number'] = $lrnum;
-                    $data[$key]['lr_date'] = $request['lr_date'][$key];
-                    $data[$key]['gross_wt'] = $request['gross_wt'][$key];
+                    $data[$key]['lr_date']   = $request['lr_date'][$key];
+                    $data[$key]['gross_wt']  = $request['gross_wt'][$key];
                     $data[$key]['truck_number'] = $request['truck_number'][$key];
                     $data[$key]['invoice_number'] = $request['invoice_number'][$key];
                 }
@@ -155,19 +155,16 @@ class PaymentController extends Controller
             
             $bname = Branch::select('id','name','city')->whereIn('id', $ids)->where('city', 'like', $city[0].'%')->get();
             $assigned =  $bname->toArray();
-           // dd($assigned);
             if(!empty($assigned)) {
             // echo "<pre>";print_r($assigned);die;   
                 return response()->json(['success'=>true]);
             }
             else{
-                // echo "<p class='text-danger'>No branch assigned</p>";
                 $html = "<p class='text-danger'>No branch assigned</p>";
                 return response()->json(['success'=>false, 'error_msg'=>$html]);
             }
         }
         else{
-            // echo "<p class='text-danger'>No branch assigned</p>";
             $html = "<p class='text-danger'>No branch assigned</p>";
             return response()->json(['success'=>false, 'error_msg'=>$html]);
         }
@@ -185,7 +182,6 @@ class PaymentController extends Controller
         else{
             echo "<p class='text-danger'>No branch assigned in the selected city</p>";
         }
-
     }
 
     /**
@@ -196,9 +192,36 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($id);
+        $getpayment = MapLocation::where('id',$id)->first();
+        $paymentdetail =last($getpayment->PaymentHistory->toArray());
+
+        return view('Payments.view-payment',['prefix'=>$this->prefix,'title'=>$this->title,'getpayment'=>$getpayment,'paymentdetail'=>$paymentdetail]);
     }
 
+    // add pending payment
+    public function addPayment(Request $request)
+    {
+        // dd($request->toArray());
+        if(!empty($request->maplocation_id)){
+            $paymentdetails['maplocation_id'] = $request->maplocation_id;
+            $paymentdetails['advance_payment']= $request->advance_payment;
+            $paymentdetails['pending_payment']= $request->pending_payment;
+            $paymentdetails['payment_date']   = $request->payment_date;
+
+            $savepayments = PaymentHistory::create($paymentdetails);
+
+            $response['success'] = true;
+            $response['success_message'] = "Payment Added successfully";
+            $response['error'] = false;
+        }else{
+            $response['success'] = false;
+            $response['error_message'] = "Can not created payment please try again";
+            $response['error'] = true;
+        }
+        return response()->json($response);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -207,7 +230,14 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->prefix = request()->route()->getPrefix();
+        $id = decrypt($id);
+        $drivers = Driver::where('status',1)->orderby('name','ASC')->pluck('name','id');
+        $brokers = Broker::where('status',1)->orderby('name','ASC')->pluck('name','id'); 
+        $vehicle_capacity = VehicleCapacity::where('status',1)->orderby('id','ASC')->pluck('name','id');
+        $getpayment = MapLocation::where('id',$id)->first();
+        
+        return view('Payments.update-payment')->with(['prefix'=>$this->prefix,'getpayment'=>$getpayment,'drivers'=>$drivers,'brokers'=>$brokers,'vehicle_capacity'=>$vehicle_capacity]);
     }
 
     /**

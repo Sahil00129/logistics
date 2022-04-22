@@ -9,7 +9,7 @@ class PaymentHistory extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'maplocation_id','vehcapacity_id','payment_type','payment_to','paytobroker_id','paytodriver_id','purchase_price', 'advance_payment','pending_payment','status','created_at','updated_at'    
+        'maplocation_id','advance_payment','pending_payment','payment_date','status','created_at','updated_at'    
     ];
     
     public function stops(){

@@ -16,15 +16,10 @@ class CreatePaymentHistoriesTable extends Migration
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('maplocation_id')->nullable();
-            $table->string('vehcapacity_id')->nullable();
-            $table->string('payment_type')->nullable()->comment('1=>advance_payment 2=>pending_payment 3=>other_charges');
-            $table->string('payment_to')->nullable()->comment('1=>broker/owner 2=>driver');
-            $table->string('paytobroker_id')->nullable();
-            $table->string('paytodriver_id')->nullable();
-            $table->string('purchase_price')->nullable();
             $table->string('advance_payment')->nullable();
             $table->string('pending_payment')->nullable();
-            $table->tinyinteger('status')->nullable();
+            $table->date('payment_date')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

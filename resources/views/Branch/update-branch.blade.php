@@ -88,10 +88,7 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="images">
-                                                    <!-- <span class="file bg-brown rounded btn-md"> --> 
                                                         <input type="file" name="files[]" data-id="1" class="first" accept="image/*"/>
-                                                        <!-- <i class="fa fa-plus"></i> Add file  
-                                                    </span> -->
                                                     <p style="display:none;color:red" class="gif-errormsg1">Invalid image format</p>
                                                 </div>
                                             @endif

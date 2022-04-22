@@ -9,26 +9,27 @@
 </style>
 
 <div class="layout-px-spacing">
-    <form id="createpayment" class="general_form" method="POST" action="{{url($prefix.'payments')}}" enctype="multipart/form-data">
+    <form id="updatepayment" class="general_form" method="POST" action="{{url($prefix.'payments/update-payment')}}" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="maplocation_id" value="{{$getpayment->id}}">
         <div class="row layout-top-spacing">
         	<div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-chart-two">
                     <div class="widget-heading">
-                        <h5 class="">Create Payment</h5>
+                        <h5 class="">Update Payment</h5>
                     </div>
                     <div class="widget-content">
                         <div class="card-body">
                             <div class="col-md-12 mb-2">
                                 <label>From City</label>
-                                <input class="form-control" id="from_places" placeholder=""/>
+                                <input class="form-control" id="from_places" value="{{old('origin',isset($getpayment->origin)?$getpayment->origin:'')}}"/>
                                 <input id="origin" name="origin" required="" type="hidden"/>
                             </div>
                             <div class="col-md-12" id="fo" style="display:none;">
 
                             </div>
                             <div class="col-md-12 mb-2"><label>Destination: </label>
-                                <input class="form-control" id="to_places" placeholder=""/>
+                                <input class="form-control" id="to_places" value="{{old('destination',isset($getpayment->destination)?$getpayment->destination:'')}}"/>
                                 <input id="destination" name="destination" required="" type="hidden"/>
                             </div>
                             <div class="col-md-12" id="trndest" style="display:none;">
@@ -38,9 +39,9 @@
                                 <label>Payment Type</label>
                                 <select class="form-control" name="payment_type">
                                     <option value="">Select</option>
-                                    <option value="1">Advance</option>
-                                    <option value="2">Pending</option>
-                                    <option value="3">Other Charges</option>
+                                    <option value="1" {{$getpayment->payment_type == '1' ? 'selected' : ''}}>Advance</option>
+                                    <option value="2" {{$getpayment->payment_type == '2' ? 'selected' : ''}}>Pending</option>
+                                    <option value="3" {{$getpayment->payment_type == '3' ? 'selected' : ''}}>Other Charges</option>
                                 </select>
                             </div>
                             
@@ -50,8 +51,8 @@
                                 <label for="exampleFormControlSelect1">Payment To</label>
                                 <select class="form-control" id="payment-to" name="payment_to">
                                     <option value="">Select</option>
-                                    <option value="1">Broker/Owner</option>
-                                    <option value="2">Driver</option>
+                                    <option value="1" {{$getpayment->payment_to == '1' ? 'selected' : ''}}>Broker/Owner</option>
+                                    <option value="2" {{$getpayment->payment_to == '2' ? 'selected' : ''}}>Driver</option>
                                 </select>
                             </div>
                             <div class="col-md-12 mb-2 brokerlist" style="display:none">
@@ -63,11 +64,11 @@
                                         foreach ($brokers as $key => $broker)
                                         {
                                     ?>
-                                        <option value="{{ $key }}">{{ucwords($broker)}}</option>
+                                        <option value="{{ $key }}" {{ $key == $getpayment->paytobroker_id ? 'selected' : ''}}>{{ucwords($broker)}}</option>
                                       <?php 
                                         }
                                     }
-                                    ?>                            
+                                    ?>                          
                                 </select>
                             </div>
                             <div class="col-md-12 mb-2 driverlist" style="display:none">
@@ -79,7 +80,7 @@
                                         foreach ($drivers as $key => $driver)
                                         {
                                     ?>
-                                        <option value="{{ $key }}">{{ucwords($driver)}}</option>
+                                        <option value="{{ $key }}" {{ $key == $getpayment->paytodriver_id ? 'selected' : ''}}>{{ucwords($driver)}}</option>
                                       <?php 
                                         }
                                     }
@@ -95,7 +96,7 @@
                                         foreach ($vehicle_capacity as $key => $vehicle)
                                         {
                                     ?>
-                                        <option value="{{ $key }}">{{ucwords($vehicle->name)}}</option>
+                                        <option value="{{ $key }}" {{ $key == $getpayment->vehcapacity_id ? 'selected' : ''}}>{{ucwords($vehicle)}}</option>
                                       <?php 
                                         }
                                     }
@@ -107,19 +108,19 @@
                             <div class="mb-2 card-header addvehiclesList" id="invc" style="width: 100%;"><h6> <i class="fadeIn animated bx bx-news"></i> Add Invoice Details + </h6></div>
                             <div class="col-md-12 mb-2 vehiclesList">
                                 <label>Purchase Price</label>
-                                <input type="number" class="form-control mbCheckNm purchase_price" name="purchase_price" placeholder="">
+                                <input type="number" class="form-control mbCheckNm purchase_price" name="purchase_price" value="{{old('purchase_price',isset($getpayment->purchase_price)?$getpayment->purchase_price:'')}}">
                             </div>
                             <div class="col-md-12 mb-2 vehiclesList">
                                 <label>Advance payment</label>
-                                <input type="number" class="form-control mbCheckNm advance_payment" name="advance_payment" placeholder="" disabled>
+                                <input type="number" class="form-control mbCheckNm advance_payment" name="advance_payment" value="{{old('advance_payment',isset($getpayment->PaymentHistory->advance_payment)?$getpayment->PaymentHistory->advance_payment:'')}}" disabled>
                             </div>
                             <div class="col-md-12 mb-2 vehiclesList">
                                 <label>Pending</label>
-                                <input style="color:#3b3f5c;" type="number" class="form-control pending_payment" name="pending_payment" placeholder="" readonly>
+                                <input style="color:#3b3f5c;" type="number" class="form-control pending_payment" name="pending_payment" value="{{old('pending_payment',isset($getpayment->pending_payment)?$getpayment->pending_payment:'')}}" readonly>
                             </div>
                             <div class="col-12 mb-2">
                                 <label for="inputAddress2" class="form-label">Number of stops</label>
-                                <input type="text" id="numstops" class="form-control mbCheckNm" name="number_stops" maxlength="1">
+                                <input type="text" id="numstops" class="form-control mbCheckNm" name="number_stops" maxlength="1" value="{{old('number_stops',isset($getpayment->number_stops)?$getpayment->number_stops:'')}}">
                             </div>
                             
                             <div class="col-12">
@@ -205,32 +206,6 @@
         $('.stopstable').find('tbody').append(rows);
 
     });
-    
-    // create payment page get pending payment
-    $(".purchase_price, .advance_payment").keyup(function(){
-        var purprice = $('.purchase_price').val();
-        var advprice = $('.advance_payment').val();
-        var pending  = purprice-advprice;
-        $('.pending_payment').val(pending);
-    });
-
-    $(".purchase_price").keyup(function(){
-        pur = $(this).val();
-        if(pur>0){
-            $('.advance_payment').attr("disabled", false);
-        }else{
-            $('.advance_payment').val('');
-            $('.advance_payment').attr("disabled", true);
-        }
-    });
-
-    $(".advance_payment").keyup(function(){
-        adv =$(this).val();
-        pend = $('.pending_payment').val();
-        if ((parseInt(adv) > parseInt(pur))||(parseInt(pend)<0)) {
-            $('.advance_payment').val('');
-        }
-    });   
     
     // google map integration code
     $(function () {

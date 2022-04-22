@@ -350,31 +350,34 @@ jQuery(document).ready(function(){
         });
     });
 
-    // create payment page get pending payment
-    $(".purchase_price, .advance_payment").keyup(function(){
-        var purprice = $('.purchase_price').val();
-        var advprice = $('.advance_payment').val();
-        var pending  = purprice-advprice;
-        $('.pending_payment').val(pending);
-    });
+    //// get create pending payment in view detail page ////
 
-    $(".purchase_price").keyup(function(){
-        pur = $(this).val();
-        if(pur>0){
-            $('.advance_payment').attr("disabled", false);
-        }else{
-            $('.advance_payment').val('');
-            $('.advance_payment').attr("disabled", true);
-        }
-    });
+    jQuery(document).on('click','.addpendingpayament',function(){
+        var maplocationid = jQuery(this).attr('data-id');
+        var purchaseprice = jQuery(this).attr('data-purchaseprice');
+        var pendingprice = jQuery(this).attr('data-pendingprice');
+        var pur_price = $('.purchase_price').val(purchaseprice);
+        jQuery('.maplocid').val(maplocationid);
 
-    $(".advance_payment").keyup(function(){
-        adv =$(this).val();
-        pend = $('.pending_payment').val();
-        if ((parseInt(adv) > parseInt(pur))||(parseInt(pend)<0)) {
-            $('.advance_payment').val('');
-        }
-    });    
+        var action = jQuery(this).attr('data-action');
+
+        jQuery.ajax({
+          type      : 'post',
+          url       : action,
+          // data      : {maplocationid:maplocationid},
+          headers   : {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          dataType  : 'json',
+          success:function(response){
+            if(response.success){
+                location.reload();
+            }
+          }
+        });
+      });
+
+     
     // end create payment page get pending payment
 
     

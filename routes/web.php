@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/payments/get-assigned', [PaymentController::class,'getAssigned']);
     Route::post('/payments/get-destination', [PaymentController::class,'get_destination']);
 
+    Route::any('payments/get-addpayment', [PaymentController::class,'addPayment']);
+
 });
 
 Route::get('forbidden-error', [App\Http\Controllers\DashboardController::class, 'ForbiddenPage']);
